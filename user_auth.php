@@ -13,7 +13,7 @@ if($get_password && $get_email) {
         $_SESSION['start']=true;
         $_SESSION['id']=$id;
         echo "logged in";
-        header('Location: home.php');
+        header('Location: home.php?user='.$row['id'].'');
         exit();
     }
     else{
