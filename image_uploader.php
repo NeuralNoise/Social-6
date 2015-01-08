@@ -11,7 +11,7 @@ if(!$fileTmpLoc)
     echo '<h3>error, please browse for file</h3>';
     exit();
 }
-if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
+if( copy($fileTmpLoc, "img/$fileName")){
     echo "$fileName".'<h3>successfully added to your gallery</h3>';
 }
 else{
