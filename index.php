@@ -10,6 +10,15 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
+                <?php
+                session_start();
+                    if(isset($_SESSION['id']) && $_SESSION['start']== true){
+
+                    }
+                    else{
+
+                    }
+                ?>
                 <a class="navbar-brand">
                     <img src="">
                 </a>

@@ -18,7 +18,7 @@ if($get_password && $get_email) {
     }
     else{
         echo "Invalid Username or Password! Try again";
-        header('Location: signin.php?err=403');
+        header('Location: index.php?err=404');
         exit();
     }
 }

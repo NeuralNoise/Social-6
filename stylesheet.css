@@ -7,3 +7,9 @@
     border-bottom: 1px solid rgba(153, 148, 148, 0.54);
     border-radius: 15px;
 }
+.err_msg{
+    color: darkblue;
+}
+textarea{
+    resize: none;
+}
