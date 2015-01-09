@@ -43,10 +43,13 @@
         echo '<p>'.$comm_row['comment'].'</p>';
     }
     ?>
-    <form action="" method="post">
+    <form action="add_comment.php" method="post">
         <label>Comments</label>
         <textarea rows="2" class="form-control"></textarea>
         <input type="file">
+        <?php
+        echo '<input type="hidden" value="'.$img_row['id'].'" name="cont_id">'
+        ?>
         <input type="submit" class="btn btn-default">
     </form>
 </div>

@@ -8,7 +8,6 @@
 
     include('connect.php');
     $id = $_GET['user'];
-    echo $id;
     $img_query = $conn->query("select * from images where user_id = $id");
     $img_row = $img_query->fetch();
 

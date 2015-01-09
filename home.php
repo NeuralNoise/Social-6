@@ -10,7 +10,6 @@
     $user_query = $conn ->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
     $img_query = $conn ->query("select * from images where user_id = $user_id");
-
     ?>
 </head>
 <header>
@@ -36,6 +35,16 @@
 <body>
 <div class="container-fluid">
     <div class="col-md-2">
+        <h3>People u may know</h3>
+        <?php
+            $query = $conn->query("select * from user_info");
+                while($row = $query->fetch()) {
+                    if ($row['id'] != $user_id){
+                        echo '<a href="user.php?id='.$row['id'].'"><h4>'.$row['firstname'].'</h4></a>';
+                        echo '<p>'.$row['email'].'</p>';
+                    }
+        }
+        ?>
     </div>
 <!--    All display content -->
     <div class="col-md-10">
