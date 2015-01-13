@@ -9,7 +9,7 @@
     //Your php code goes here
     include "connect.php";
     $get_id = $_GET['id'];
-    $userid = $_SESSION['id'];
+    $user_id = $_SESSION['id'];
     echo $get_id;
     $info_query = $conn->query("select * from user_info where id = $get_id");
     $dp_query = $conn ->query("select * from images where user_id = $get_id");
@@ -25,15 +25,14 @@
                 <?php
 
                 if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                    echo "logged in";
-
+                    echo '<a href="index.php" class="btn cred">Logout</a>';
                 }
                 else{
-                    echo "logged out";
+                    echo '<a href="logout.php" class="btn cred">Login</a>';
                 }
                 ?>
                 <a class="navbar-brand">
-                    <img src="">
+                    <a href="home.php"  class="btn home">Home</a>
                 </a>
             </div>
         </div>
@@ -59,7 +58,11 @@
             </div>
             <div class="col-md-2">
                 <?php
-                    
+                $my_query = $conn->query("select * from friend where user_id = $user_id");
+                $my_row = $my_query->fetch();
+                $frnd_query = $conn->query("select * from friend where friend_id = $get_id");
+                $frnd_row = $frnd_query->fetch();
+
                 ?>
             </div>
         </div>
