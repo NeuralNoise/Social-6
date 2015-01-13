@@ -5,12 +5,14 @@
     <script src="../includes/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheet.css">
     <?php
+    session_start();
     //Your php code goes here
     include "connect.php";
     $get_id = $_GET['id'];
+    $userid = $_SESSION['id'];
+    echo $get_id;
     $info_query = $conn->query("select * from user_info where id = $get_id");
     $dp_query = $conn ->query("select * from images where user_id = $get_id");
-    $frnd_query = $conn->query("select * from friends where user_id = $get_id");
     $info_row = $info_query->fetch();
     $img_row = $dp_query->fetch();
 
@@ -21,10 +23,10 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <?php
-                session_start();
+
                 if(isset($_SESSION['id']) && $_SESSION['start']== true){
                     echo "logged in";
-                    echo $_SESSION['id'];
+
                 }
                 else{
                     echo "logged out";
@@ -43,10 +45,10 @@
     <div class="col-md-2"></div>
     <div class="col-md-10">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 dp_box">
 
                 <!--dp in php-->
-                <img src="img/img1.jpg">
+                <img src="img/img1.jpg" class="user_dp">
             </div>
             <div class="col-md-8">
                 <?php
@@ -57,9 +59,18 @@
             </div>
             <div class="col-md-2">
                 <?php
-                    while($frnd_row = $frnd_query->fetch()){
+                $frnd_query = $conn->query("select * from friends where user_id = $userid and friend_id = $get_id");
+                $frnd_row = $frnd_query->fetch();
+                        if($frnd_row['accepted'] == 1){
+                            echo '<button class="btn btn-default">Friend</button>';
+                        }
+                        else if($frnd_row['sent'] == 1){
+                            echo '<button class="btn btn-default">Already Sent</button>';
+                        }
+                        else {
+                            echo '<a href="add_friends.php?id='.$get_id.'" class="btn btn-default">Add friend</a>';
+                        }
 
-                    }
                 ?>
             </div>
         </div>

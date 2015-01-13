@@ -13,3 +13,13 @@
 textarea{
     resize: none;
 }
+a:hover{
+    text-decoration: none;
+}
+.user_dp{
+   max-width: 100%;
+    border-radius: 5px;
+}
+.friends{
+    overflow: hidden;
+}

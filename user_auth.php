@@ -7,12 +7,11 @@ if($get_password && $get_email) {
     $query = $conn -> query("SELECT * FROM user_info WHERE email = '$get_email'");
     $row = $query -> fetch();
     if($row['password'] == $get_password){
-        $id = $row['id'];
-        echo $id;
+        session_start();
         echo 'logged in';
         $_SESSION['start']=true;
-        $_SESSION['id']=$id;
-        echo "logged in";
+        $_SESSION['id']=$row['id'];
+        echo "session".$_SESSION['id'];
         header('Location: home.php?user='.$row['id'].'');
         exit();
     }
