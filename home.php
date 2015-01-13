@@ -11,7 +11,6 @@
     $user_query = $conn ->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
     $img_query = $conn ->query("select * from images where user_id = $user_id");
-    $frnd_query = $conn ->query("select * from friends where user_id = $user_id");
     ?>
 </head>
 <header>
@@ -21,15 +20,14 @@
                 <?php
 
                 if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                    echo "logged in";
-                    echo "  user id".$user_id;
+                    echo '<a href="index.php" class="btn cred">Logout</a>';
                 }
                 else{
-                    echo "logged out";
+                    echo '<a href="logout.php" class="btn cred">Login</a>';
                 }
                 ?>
                 <a class="navbar-brand">
-                    <img src="">
+                    <a href="home.php"  class="btn home">Home</a>
                 </a>
             </div>
         </div>
@@ -40,55 +38,17 @@
     <div class="col-md-2 friends">
         <h3>Friends list</h3>
         <?php
-        $friends = array();
-        $n = 0;
-        while($frnd_row = $frnd_query->fetch()){
-                $frnd_id = $frnd_row['friend_id'];
-                $list_query = $conn->query("select * from user_info where id = $frnd_id");
-            if($frnd_row['accepted'] == 1){
-                $list_row = $list_query->fetch();
-                $friends[$n] = $list_row['id'];
-                echo '<a href="user.php?id='.$list_row['id'].'"><p class="name">'.$list_row['firstname'].' '.$list_row['lastname'].'</p></a>';
-                echo '<p class="">'.$list_row['email'].'</p>';
-            }
-            else if($frnd_row['recieved']== 1 && $frnd_row['accepted'] == 0){
-                echo '<h3>Request recieved</h3>';
-                    $list_row = $list_query->fetch();
-                    $friends[$n] = $list_row['id'];
-                    echo '<a href="user.php?id='.$list_row['id'].'"><p class="name">'.$list_row['firstname'].' '.$list_row['lastname'].'</p></a>';
-                    echo '<p class="">'.$list_row['email'].'</p>';
-                }
-            else if($frnd_row['sent']== 1 && $frnd_row['accepted'] == 0){
-                echo '<h3>Request Sent</h3>';
-                $list_row = $list_query->fetch();
-                $friends[$n] = $list_row['id'];
-                echo '<a href="user.php?id='.$list_row['id'].'"><p class="name">'.$list_row['firstname'].' '.$list_row['lastname'].'</p></a>';
-                echo '<p class="">'.$list_row['email'].'</p>';
-            }
-            $n++;
-        }
+
         ?>
 
         <h3>People you may know</h3>
         <?php
         $query = $conn ->query("select * from user_info");
         while($row =$query->fetch()) {
-            $f = 0;
-            $id = $row['id'];
-            if ($id != $user_id) {
-                for ($i = 0; $i < $n; $i++) {
-                    if ($id != $friends[$i]) {
-                        $f++;
-                    }
-                }
-                if($f >= $n ){
-                    $user_query = $conn ->query("select * from user_info where id = $id");
-                    $user_row = $user_query->fetch();
-                    echo '<a href="user.php?id='.$user_row['id'].'"><p class="name">'.$user_row['firstname'].' '.$user_row['lastname'].'</p></a>';
-                    echo '<p class="">'.$user_row['email'].'</p>';
-                }
+            if($row['id'] != $user_id){
+                echo '<a href="user.php?id='.$row['id'].'"><p class="name">'.$row['firstname'].' '.$row['lastname'].'</p></a>';
+                echo '<p class="">'.$row['email'].'</p>';
             }
-
         }
         ?>
     </div>

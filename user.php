@@ -59,18 +59,7 @@
             </div>
             <div class="col-md-2">
                 <?php
-                $frnd_query = $conn->query("select * from friends where user_id = $userid and friend_id = $get_id");
-                $frnd_row = $frnd_query->fetch();
-                        if($frnd_row['accepted'] == 1){
-                            echo '<button class="btn btn-default">Friend</button>';
-                        }
-                        else if($frnd_row['sent'] == 1){
-                            echo '<button class="btn btn-default">Already Sent</button>';
-                        }
-                        else {
-                            echo '<a href="add_friends.php?id='.$get_id.'" class="btn btn-default">Add friend</a>';
-                        }
-
+                    
                 ?>
             </div>
         </div>
