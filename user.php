@@ -61,16 +61,16 @@
                 $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
                 $row = $count_query->fetchColumn();
                 if($row == 0){
-                    echo '<p>add friends</p>'; //if no row exists
+                    echo '<a href="add_friends.php"><p>add friends</p></a>'; //if no row exists
                 }
                 else{ //if row exists
                     $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
-                    $f_row = $f_query->fetchColumn();
+                    $f_row = $f_query->fetch();
                     if($f_row['accepted'] == 1){
                         echo '<p>Friends</p>';
                     }
                     else{
-                        echo '<p>Request sent</p>';
+                        echo '<a><p>Request sent</p></a>';
                     }
                 }
                 ?>
