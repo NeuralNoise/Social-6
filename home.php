@@ -36,12 +36,7 @@
 <body>
 <div class="container-fluid">
     <div class="col-md-2 friends">
-        <h3>Friends list</h3>
-        <?php
-
-        ?>
-
-        <h3>People you may know</h3>
+        <h3>List</h3>
         <?php
         $query = $conn ->query("select * from user_info");
         while($row =$query->fetch()) {
@@ -50,6 +45,14 @@
                 echo '<p class="">'.$row['email'].'</p>';
             }
         }
+//        $r_query = $conn ->query("select * from friends where user_id = $user_id and accepted = 0");
+//        while($r_row = $r_query->fetch()){
+//            $r_id = $r_row['friend_id'];
+//            $user_query = $conn ->query("select * from user_info where id = $r_id");
+//            $user_row = $user_query->fetch();
+//            echo '<a><p>Request received from'.$user_row['firstname'].'</p></a>';
+//        }
+
         ?>
     </div>
 <!--    All display content -->

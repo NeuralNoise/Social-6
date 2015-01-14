@@ -10,7 +10,6 @@
     include "connect.php";
     $get_id = $_GET['id'];
     $user_id = $_SESSION['id'];
-    echo $get_id;
     $info_query = $conn->query("select * from user_info where id = $get_id");
     $dp_query = $conn ->query("select * from images where user_id = $get_id");
     $info_row = $info_query->fetch();
@@ -58,11 +57,22 @@
             </div>
             <div class="col-md-2">
                 <?php
-                $my_query = $conn->query("select * from friend where user_id = $user_id");
-                $my_row = $my_query->fetch();
-                $frnd_query = $conn->query("select * from friend where friend_id = $get_id");
-                $frnd_row = $frnd_query->fetch();
-
+                //counting if any row exists
+                $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
+                $row = $count_query->fetchColumn();
+                if($row == 0){
+                    echo '<p>add friends</p>'; //if no row exists
+                }
+                else{ //if row exists
+                    $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+                    $f_row = $f_query->fetchColumn();
+                    if($f_row['accepted'] == 1){
+                        echo '<p>Friends</p>';
+                    }
+                    else{
+                        echo '<p>Request sent</p>';
+                    }
+                }
                 ?>
             </div>
         </div>
