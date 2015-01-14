@@ -72,10 +72,12 @@
                         echo '<p>Friends</p>';
                     }
                     else if($r_row['accepted'] == 1 && $f_row['accepted'] == null){
-                        echo '<a><p>Request sent</p></a>';
+                        echo '<p>Request sent</p>';
                     }
                     else if($r_row['accepted'] == null && $f_row['accepted'] == 1){
-                        echo '<a><p>Request received</p></a>';
+                        echo '<p>Request received</p>';
+                        echo '<a href="accept_req.php?id='.$get_id.'"><p>Accept</p></a>';
+                        echo '<a href="decline_req.php?id='.$get_id.'"><p>Decline</p></a>';
                     }
                 }
                 ?>
