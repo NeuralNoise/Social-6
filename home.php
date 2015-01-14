@@ -38,11 +38,65 @@
 
         <?php
         //counting if any row exists
-        $query = $conn->query("select * from user_info");
+
         $un = true;
         $kn = true;
         $ad = true;
         $wl = true;
+        //friend list
+        $query = $conn->query("select * from user_info");
+        while($row = $query->fetch()) {
+            $get_id = $row['id'];
+            if ($get_id != $user_id) {
+                $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
+                $row = $count_query->fetchColumn();
+                if($row == 1){
+                    $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+                    $r_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
+                    $f_row = $f_query->fetch();
+                    $r_row = $r_query->fetch();
+
+                    if ($f_row['accepted'] == 1 && $r_row['accepted'] == 1) {
+                        if ($kn) {
+                            echo '<h3>Friends</h3>';
+                            $kn = false;
+                        }
+                        $user_query = $conn->query("select * from user_info where id = $get_id");
+                        $user_row = $user_query->fetch();
+                        echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
+                        echo '<p class="">' . $user_row['email'] . '</p>';
+                    }
+                }
+            }
+        }
+        // pending requests
+        $query = $conn->query("select * from user_info");
+        while($row = $query->fetch()) {
+            $get_id = $row['id'];
+            if ($get_id != $user_id) {
+                $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
+                $row = $count_query->fetchColumn();
+                if($row == 1){
+                    $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+                    $r_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
+                    $f_row = $f_query->fetch();
+                    $r_row = $r_query->fetch();
+
+                    if ($r_row['accepted'] == 0 && $f_row['accepted'] == 1) {
+                        if ($ad) {
+                            echo '<h3>Request received</h3>';
+                            $ad = false;
+                        }
+                        $user_query = $conn->query("select * from user_info where id = $get_id");
+                        $user_row = $user_query->fetch();
+                        echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
+                        echo '<p class="">' . $user_row['email'] . '</p>';
+                    }
+                }
+            }
+        }
+        //People you may know
+        $query = $conn->query("select * from user_info");
         while($row = $query->fetch()) {
             $get_id = $row['id'];
             if ($get_id != $user_id) {
@@ -59,38 +113,13 @@
                     echo '<p class="">' . $user_row['email'] . '</p>';
                     //if no row exists
                 }
-                else { //if row exists
+                else if($row == 1){
                     $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
                     $r_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
                     $f_row = $f_query->fetch();
                     $r_row = $r_query->fetch();
-                    if ($f_row['accepted'] == 1 && $r_row['accepted'] == 1) {
-                        if($kn){
-                            echo '<h3>Friends</h3>';
-                            $kn = false;
-                        }
-                        $user_query = $conn->query("select * from user_info where id = $get_id");
-                        $user_row = $user_query->fetch();
-                        echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                        echo '<p class="">' . $user_row['email'] . '</p>';
 
-                    }
-
-                    else if ($r_row['accepted'] == null && $f_row['accepted'] == 1) {
-                       if($ad){
-                           echo '<h3>Request received</h3>';
-                           $ad = false;
-                       }
-                        $user_query = $conn->query("select * from user_info where id = $get_id");
-                        $user_row = $user_query->fetch();
-                        echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                        echo '<p class="">' . $user_row['email'] . '</p>';
-                    }
-                    else if ($r_row['accepted'] == 1 && $f_row['accepted'] == null) {
-                        if($wl) {
-                            echo '<h3>Waiting...</h3>';
-                            $wl = false;
-                        }
+                    if ($r_row['accepted'] == 1 && $f_row['accepted'] == 0) {
                         $user_query = $conn->query("select * from user_info where id = $get_id");
                         $user_row = $user_query->fetch();
                         echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
@@ -99,6 +128,7 @@
                 }
             }
         }
+
         ?>
     </div>
 <!--    All display content -->
@@ -113,11 +143,8 @@
             echo '</div>';
             echo '<div class="col-md-10">';
                 echo '<p>Hi, '.$user_row['firstname'];
-            echo '</div>';
             ?>
-        </div>
-        <div class="row">
-            <div class="col-md-offset-2 col-md-8">
+            <p>How u doin...</p>
                 <form action="" method="post" enctype="multipart/form-data">
                     <textarea class="form-control" rows="2" wrap="hard" name="status"></textarea>
                     <input type="file" id="file1" name="file1">
@@ -138,6 +165,5 @@
             ?>
         </div>
     </div>
-</div>
 </body>
 </html>

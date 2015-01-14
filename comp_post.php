@@ -17,16 +17,16 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <?php
-                session_start();
+
                 if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                    echo "log out";
+                    echo '<a href="index.php" class="btn cred">Logout</a>';
                 }
                 else{
-                    echo "log in";
+                    echo '<a href="logout.php" class="btn cred">Login</a>';
                 }
                 ?>
                 <a class="navbar-brand">
-                    <img src="">
+                    <a href="home.php"  class="btn home">Home</a>
                 </a>
             </div>
         </div>
