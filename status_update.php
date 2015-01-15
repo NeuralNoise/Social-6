@@ -1,25 +1,26 @@
 <?php
 include ("connect.php");
+session_start();
+$user_id = $_SESSION['id'];
 $status = $_POST['status'];
-
-$upload = '';
+$date_time =  date('m/d/Y h:i:s a', time());
 $fileName = $_FILES["file1"]["name"];
 $fileTmpLoc = $_FILES["file1"]["tmp_name"];
 $fileType = $_FILES["file1"]["type"];
 $filesize = $_FILES["file1"]["size"];
 $fileErrorMsg = $_FILES["file1"]["error"];
-
-if(!$fileName)
+if(!$fileTmpLoc)
 {
     echo '<h3>error, please browse for file</h3>';
     exit();
 }
-if(move_uploaded_file($fileName, "img/$fileName")){
-    echo "$fileName".'<h3>successfully added to your gallery</h3>';
+if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
+    $img = 'img/'.$fileName;
+    $query = $conn->query("insert into status_update (user_id, status, image, time) values ($user_id, '$status', '$img', '$date_time')");
+    header('Location:home.php?user='.$user_id.'');
 }
 else{
     echo "<h3>upload failed</h3>";
 }
-$query = $conn->query("insert into images (display_pic, status) values ('$fileName', '$status')");
 
 ?>

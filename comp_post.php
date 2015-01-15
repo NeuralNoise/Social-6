@@ -7,9 +7,6 @@
     <?php
     include "connect.php";
     //Your php code goes here
-    $img_id = $_GET['id'];
-    $img_query = $conn ->query("select * from images where user_id = $img_id");
-    $comm_query = $conn ->query("select * from comments where user_id = $img_id");
     ?>
 </head>
 <header>
@@ -36,12 +33,6 @@
 <div class="container">
     <?php
 
-    $img_row = $img_query->fetch();
-    echo '<img src="img/'.$img_row['gallery'].'">';
-    echo '<p>'.$img_row['tags'].'</p>';
-    while($comm_row = $comm_query->fetch()){
-        echo '<p>'.$comm_row['comment'].'</p>';
-    }
     ?>
     <form action="add_comment.php" method="post">
         <label>Comments</label>

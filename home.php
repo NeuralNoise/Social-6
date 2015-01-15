@@ -32,8 +32,10 @@
 </header>
 <body>
 <div class="container-fluid">
-    <div class="col-md-2 friends">
 
+<!--    friends and unknown list-->
+
+    <div class="col-md-2 friends">
         <?php
         //counting if any row exists
 
@@ -129,7 +131,7 @@
 
         ?>
     </div>
-<!--    All display content -->
+<!--user info -img, name etc-->
     <div class="col-md-10">
         <div class="row">
 
@@ -150,22 +152,30 @@
                 </form>
             </div>
         </div>
+<!--    Previous posts-->
         <div class="prev_content">
             <?php
+
             include "connect.php";
+            $post_query = $conn->query("select * from status_update where user_id = $user_id");
+            while($post_row = $post_query->fetch()) {
+                echo '<div class="row post">';
+                echo '<div class="col-md-offset-2 col-md-10">';
                 echo '<div class="row">';
-                    echo '<div class="col-md-offset-2 col-md-10">';
-                        echo '<div class="row">';
-                            echo '<div class="col-md-1">';
-                                echo '<a href="dp_change.php?user='.$user_id.'"><img src="img/img1.jpg" class="user_dp"></a>';
-                            echo '</div>';
-                            echo '<div class="col-md-11">';
-                                echo '<a href="comp_post.php?id=' . $user_id . '"><img src="img/Wp1 (4).jpg" class="status_img"></a>';
-                                echo '<p></p>';
-                            echo '</div>';
-                        echo '</div>';
-                    echo '</div>';
+                echo '<div class="col-md-1">';
+//            user image
+                echo '<a href="dp_change.php?user=' . $user_id . '"><img src="img/img1.jpg" class="user_dp"></a>';
                 echo '</div>';
+                echo '<div class="col-md-11">';
+//            user content
+                echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
+                echo '<p class="post_txt">' . $post_row['status'] . '</p></a>';
+
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
             ?>
         </div>
     </div>
