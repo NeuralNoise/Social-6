@@ -33,3 +33,6 @@ a:hover{
     top: 0;
     left: 0;
 }
+.status_img{
+    max-width: 100%;
+}

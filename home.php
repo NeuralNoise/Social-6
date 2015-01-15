@@ -8,8 +8,6 @@
     include "connect.php";
     session_start();
     $user_id=$_SESSION['id'];
-
-    $img_query = $conn ->query("select * from images where user_id = $user_id");
     ?>
 </head>
 <header>
@@ -155,13 +153,20 @@
         <div class="prev_content">
             <?php
             include "connect.php";
-            while($img_row = $img_query->fetch())
-            echo '<div class="row">';
-                echo '<div class="col-md-offset-2 col-md-10">';
-                    echo '<a href="comp_post.php?id='.$user_id.'"><img src="img/'.$img_row['gallery'].'" class="status_img"></a>';
-                    echo '<p>'.$img_row['status'].'</p>';
+                echo '<div class="row">';
+                    echo '<div class="col-md-offset-2 col-md-10">';
+                        echo '<div class="row">';
+                            echo '<div class="col-md-1">';
+                                echo '<a href="dp_change.php?user='.$user_id.'"><img src="img/img1.jpg" class="user_dp"></a>';
+                            echo '</div>';
+                            echo '<div class="col-md-11">';
+                                echo '<a href="comp_post.php?id=' . $user_id . '"><img src="img/Wp1 (4).jpg" class="status_img"></a>';
+                                echo '<p></p>';
+                            echo '</div>';
+                        echo '</div>';
+                    echo '</div>';
                 echo '</div>';
-            echo '</div>';
+
             ?>
         </div>
     </div>
