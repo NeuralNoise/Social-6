@@ -8,8 +8,6 @@
 
     include('connect.php');
     $id = $_GET['user'];
-    $img_query = $conn->query("select * from images where user_id = $id");
-    $img_row = $img_query->fetch();
 
     ?>
 </head>
@@ -35,7 +33,7 @@
 </header>
 <body>
 <div class="container">
-    <img src="<?php echo $img_row['display_pic']; ?>" class="">
+    <img src="<?php ?>" class="">
     <form id="upload_form" action="image_uploader.php" method="post" enctype="multipart/form-data">
         <h3>Select file to upload:</h3>
         <input type="file" name="file1" id="file1" value="Add">
