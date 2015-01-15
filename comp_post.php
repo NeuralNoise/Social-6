@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <?php
-
+                session_start();
                 if(isset($_SESSION['id']) && $_SESSION['start']== true){
                     echo '<a href="index.php" class="btn cred">Logout</a>';
                 }
@@ -45,10 +45,10 @@
     ?>
     <form action="add_comment.php" method="post">
         <label>Comments</label>
-        <textarea rows="2" class="form-control"></textarea>
-        <input type="file">
+        <textarea rows="5" class="form-control" name="comment"></textarea>
+        <input type="file" id="file1" name="file1">
         <?php
-        echo '<input type="hidden" value="'.$img_row['id'].'" name="cont_id">'
+        echo '<input type="hidden" value="'.$img_row['id'].'" name="cont_id">';
         ?>
         <input type="submit" class="btn btn-default">
     </form>

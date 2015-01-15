@@ -145,7 +145,7 @@
                 echo '<p>Hi, '.$user_row['firstname'];
             ?>
             <p>How u doin...</p>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="status_update.php" method="post" enctype="multipart/form-data">
                     <textarea class="form-control" rows="2" wrap="hard" name="status"></textarea>
                     <input type="file" id="file1" name="file1">
                     <input type="submit" value="Submit" class="btn btn-default">

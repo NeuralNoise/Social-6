@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <?php
-
+                session_start();
                 if(isset($_SESSION['id']) && $_SESSION['start']== true){
                     echo '<a href="index.php" class="btn cred">Logout</a>';
                 }
