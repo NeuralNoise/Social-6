@@ -10,6 +10,7 @@
     $user_id=$_SESSION['id'];
     ?>
 </head>
+<!--script for youtube player-->
 <header>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -131,7 +132,7 @@
 
         ?>
     </div>
-<!--user info -img, name etc-->
+<!--user info -img, name and status update-->
     <div class="col-md-10">
         <div class="row">
 
@@ -166,11 +167,23 @@
 //            user image
                 echo '<a href="dp_change.php?user=' . $user_id . '"><img src="img/img1.jpg" class="user_dp"></a>';
                 echo '</div>';
-                echo '<div class="col-md-11">';
+                echo '<div cl     ass="col-md-11">';
 //            user content
                 echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
                 echo '<p class="post_txt">' . $post_row['status'] . '</p></a>';
+                if($post_row['video_link']) {
+                    function get_info($url){
+                        $link = "http://www.youtube.com/oembed?url=".$url."&format=json";
+                        $curl = curl_init($link);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                        $return = curl_exec($curl);
+                        curl_close($curl);
+                        return json_decode($return);
 
+                    }
+                    $url =
+                    echo '<div id="player"></div>';
+                }
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
