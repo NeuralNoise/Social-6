@@ -167,23 +167,27 @@
 //            user image
                 echo '<a href="dp_change.php?user=' . $user_id . '"><img src="img/img1.jpg" class="user_dp"></a>';
                 echo '</div>';
-                echo '<div cl     ass="col-md-11">';
+                echo '<div class="col-md-11">';
 //            user content
                 echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
-                echo '<p class="post_txt">' . $post_row['status'] . '</p></a>';
-                if($post_row['video_link']) {
-                    function get_info($url){
-                        $link = "http://www.youtube.com/oembed?url=".$url."&format=json";
-                        $curl = curl_init($link);
-                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-                        $return = curl_exec($curl);
-                        curl_close($curl);
-                        return json_decode($return);
 
+                if($post_row['video_link']) {
+                    $url = $post_row['video_link'];
+                    if (strpos($url, 'youtube') > 0) {
+                        $link = "http://www.youtube.com/oembed?url=" . $url . "&format=json";
                     }
-                    $url =
-                    echo '<div id="player"></div>';
+                    else if (strpos($url, 'vimeo') > 0) {
+                        $link = "http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270";
+                    }
+                    $curl = curl_init($link);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                    $return = curl_exec($curl);
+                    curl_close($curl);
+                    $info = json_decode($return);
+                    echo '<a><p>' . $info->title . '</p></a>';
+                    echo $info->html;
                 }
+                echo '<p class="post_txt">' . $post_row['status'] . '</p></a>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
