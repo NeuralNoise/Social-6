@@ -18,7 +18,7 @@ if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
         $get_content = null;
     }
     else if(strpos($get_content, 'vimeo') > 0){
-        $get_vid = str_replace(':','%3A',$get_content);
+        $get_vid = $get_content;
         $get_content=null;
     }
 

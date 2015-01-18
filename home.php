@@ -163,11 +163,11 @@
                 echo '<div class="row post">';
                 echo '<div class="col-md-offset-2 col-md-10">';
                 echo '<div class="row">';
-                echo '<div class="col-md-1">';
+                echo '<div class="col-md-2 dp_box">';
 //            user image
-                echo '<a href="dp_change.php?user=' . $user_id . '"><img src="img/img1.jpg" class="user_dp"></a>';
+                echo '<a href="#"><img src="img/img1.jpg" class="user_dp"></a>';
                 echo '</div>';
-                echo '<div class="col-md-11">';
+                echo '<div class="col-md-10">';
 //            user content
                 echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
 
