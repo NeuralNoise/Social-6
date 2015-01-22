@@ -87,7 +87,7 @@ a:hover{
 
 .sidebar{
     padding: 20px;
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 10%;
     top: 0;
@@ -100,4 +100,16 @@ a:hover{
 .sidebar h2{
     padding: 20px 0;
     color:#000000;
+    -webkit-transition: all .3s ease;
+}
+.side-option{
+    display: block;
+    color: #000000;
+    -webkit-transition: all .3s ease;
+}
+.side-option:hover{
+    color: #787878;
+}
+.badge{
+    margin-left: 5px;
 }

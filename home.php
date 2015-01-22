@@ -15,20 +15,19 @@
 <!--<img id="para-image" src="img/Digit%20(16).jpg">-->
 <div class="container-fluid" id="content">
 
-<!--    friends and unknown list-->
+<!--    off canvas menu-->
 
     <div class="friends sidebar">
-        <a class="navbar-brand">
-            <a href="home.php"  class="btn home">Home</a>
-        </a>
-
-
+<!--    home button-->
+            <a href="home.php" class="side-option">Home</a>
+<!--    number of friends-->
         <?php
-
         $un = true;
         $kn = true;
         $ad = true;
         $wl = true;
+        $friend = 0;
+        $request = 0;
         //friend list
         $query = $conn->query("select * from user_info");
         while($row = $query->fetch()) {
@@ -44,18 +43,18 @@
 
                     if ($f_row['accepted'] == 1 && $r_row['accepted'] == 1) {
                         if ($kn) {
-                            echo '<h3>Friends</h3>';
                             $kn = false;
                         }
-                        $user_query = $conn->query("select * from user_info where id = $get_id");
-                        $user_row = $user_query->fetch();
-                        echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                        echo '<p class="">' . $user_row['email'] . '</p>';
+                        $friend++;
                     }
                 }
             }
         }
-        // pending requests
+        ?>
+            <a href="friend_list.php" class="side-option">Friends<span class="badge"><?php echo $friend; ?></span></a>
+
+<!--        pending requests count-->
+        <?php
         $query = $conn->query("select * from user_info");
         while($row = $query->fetch()) {
             $get_id = $row['id'];
@@ -70,51 +69,23 @@
 
                     if ($r_row['accepted'] == 0 && $f_row['accepted'] == 1) {
                         if ($ad) {
-                            echo '<h3>Request received</h3>';
                             $ad = false;
                         }
-                        $user_query = $conn->query("select * from user_info where id = $get_id");
-                        $user_row = $user_query->fetch();
-                        echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                        echo '<p class="">' . $user_row['email'] . '</p>';
+                        $request++;
                     }
                 }
             }
         }
-        //People you may know
-        $query = $conn->query("select * from user_info");
-        while($row = $query->fetch()) {
-            $get_id = $row['id'];
-            if ($get_id != $user_id) {
-                $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
-                $row = $count_query->fetchColumn();
-                if ($row == 0) {
-                    if ($un) {
-                        echo '<h3>People you may know</h3>';
-                        $un = false;
-                    }
-                    $user_query = $conn->query("select * from user_info where id = $get_id");
-                    $user_row = $user_query->fetch();
-                    echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                    echo '<p class="">' . $user_row['email'] . '</p>';
-                    //if no row exists
-                }
-                else if($row == 1){
-                    $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
-                    $r_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
-                    $f_row = $f_query->fetch();
-                    $r_row = $r_query->fetch();
+        ?>
+        <a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a>
 
-                    if ($r_row['accepted'] == 1 && $f_row['accepted'] == 0) {
-                        $user_query = $conn->query("select * from user_info where id = $get_id");
-                        $user_row = $user_query->fetch();
-                        echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                        echo '<p class="">' . $user_row['email'] . '</p>';
-                    }
-                }
-            }
+        <?php
+        if(isset($_SESSION['id']) && $_SESSION['start']== true){
+            echo '<a href="index.php" class="btn cred">Logout</a>';
         }
-
+        else{
+            echo '<a href="logout.php" class="btn cred">Login</a>';
+        }
         ?>
     </div>
 <!--user info -img, name and status update-->
@@ -122,7 +93,7 @@
 
         <div class="row about_status">
             <div class="col-md-1">
-                <a href="" class="menu-toggle"><img src="img/menu-icon.png" class="menu-img"></a>
+                <a class="menu-toggle"><img src="img/menu-icon.png" class="menu-img"></a>
             </div>
             <?php
             $user_query = $conn ->query("select * from user_info where id = $user_id");
@@ -151,7 +122,7 @@
                 echo '<div class="row post">';
                 echo '<div class="col-md-offset-2 col-md-10">';
                 echo '<div class="row">';
-                echo '<div class="col-md-2 dp_box">';
+                echo '<div class="col-md-1 dp_box">';
 //            user image
                 echo '<a href="#"><img src="img/img1.jpg" class="user_dp"></a>';
                 echo '</div>';
@@ -190,14 +161,7 @@
                 echo '</div>';
             }
             ?>
-            <?php
-            if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                echo '<a href="index.php" class="btn cred">Logout</a>';
-            }
-            else{
-                echo '<a href="logout.php" class="btn cred">Login</a>';
-            }
-            ?>
+
         </div>
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
