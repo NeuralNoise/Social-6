@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
     <script src="../includes/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="Stylesheets/stylesheet.css">
 </head>
 <body>
 <header>

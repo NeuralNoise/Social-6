@@ -12,7 +12,7 @@ if($get_password && $get_email) {
         $_SESSION['start']=true;
         $_SESSION['id']=$row['id'];
         echo "session".$_SESSION['id'];
-        header('Location: home.php?user='.$row['id'].'');
+        header('Location: home.php?user='.$row['id'].'#hi');
         exit();
     }
     else{

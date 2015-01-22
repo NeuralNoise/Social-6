@@ -2,43 +2,28 @@
 <head>
     <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
-    <script src="../includes/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <?php
     include "connect.php";
     session_start();
+    include 'scrapy.php';
+    include 'meta_scraping.php';
     $user_id=$_SESSION['id'];
     ?>
 </head>
-<!--script for youtube player-->
-<header>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <?php
-
-                if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                    echo '<a href="index.php" class="btn cred">Logout</a>';
-                }
-                else{
-                    echo '<a href="logout.php" class="btn cred">Login</a>';
-                }
-                ?>
-                <a class="navbar-brand">
-                    <a href="home.php"  class="btn home">Home</a>
-                </a>
-            </div>
-        </div>
-    </nav>
-</header>
 <body>
-<div class="container-fluid">
+<!--<img id="para-image" src="img/Digit%20(16).jpg">-->
+<div class="container-fluid" id="content">
 
 <!--    friends and unknown list-->
 
-    <div class="col-md-2 friends">
+    <div class="friends sidebar">
+        <a class="navbar-brand">
+            <a href="home.php"  class="btn home">Home</a>
+        </a>
+
+
         <?php
-        //counting if any row exists
 
         $un = true;
         $kn = true;
@@ -133,17 +118,20 @@
         ?>
     </div>
 <!--user info -img, name and status update-->
-    <div class="col-md-10">
-        <div class="row">
+    <div class="main_content">
 
+        <div class="row about_status">
+            <div class="col-md-1">
+                <a href="" class="menu-toggle"><img src="img/menu-icon.png" class="menu-img"></a>
+            </div>
             <?php
             $user_query = $conn ->query("select * from user_info where id = $user_id");
             $user_row = $user_query->fetch();
             echo '<div class="col-md-2 dp_box">';
                 echo '<a href="dp_change.php?user='.$user_id.'"><img src="img/img1.jpg" class="user_dp"></a>';
             echo '</div>';
-            echo '<div class="col-md-10">';
-                echo '<p>Hi, '.$user_row['firstname'];
+            echo '<div class="col-md-9">';
+                echo '<p id="hi">Hi, '.$user_row['firstname'];
             ?>
             <p>How u doin...</p>
                 <form action="status_update.php" method="post" enctype="multipart/form-data">
@@ -153,7 +141,7 @@
                 </form>
             </div>
         </div>
-<!--    Previous posts-->
+<!--    All posts-->
         <div class="prev_content">
             <?php
 
@@ -174,18 +162,26 @@
                 if($post_row['video_link']) {
                     $url = $post_row['video_link'];
                     if (strpos($url, 'youtube') > 0) {
-                        $link = "http://www.youtube.com/oembed?url=" . $url . "&format=json";
+                        $info = json_decode(curl("http://www.youtube.com/oembed?url=" . $url . "&format=json"));
+                        echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
+                        echo $info->html;
                     }
                     else if (strpos($url, 'vimeo') > 0) {
-                        $link = "http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270";
+                        $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270"));
+                        echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
+                        echo $info->html;
                     }
-                    $curl = curl_init($link);
-                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-                    $return = curl_exec($curl);
-                    curl_close($curl);
-                    $info = json_decode($return);
-                    echo '<a><p>' . $info->title . '</p></a>';
-                    echo $info->html;
+                    else{
+                        if($return = meta_scrap($url)) {
+                            $url = $return->url;
+                            $title = $return->title;
+                            $image = $return->image[0]->url;
+                            $description = $return->description;
+                        }
+                        else{
+                            $curl = curl($url);
+                        }
+                    }
                 }
                 echo '<p class="post_txt">' . $post_row['status'] . '</p></a>';
                 echo '</div>';
@@ -194,7 +190,48 @@
                 echo '</div>';
             }
             ?>
+            <?php
+            if(isset($_SESSION['id']) && $_SESSION['start']== true){
+                echo '<a href="index.php" class="btn cred">Logout</a>';
+            }
+            else{
+                echo '<a href="logout.php" class="btn cred">Login</a>';
+            }
+            ?>
         </div>
     </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../includes/js/bootstrap.min.js"></script>
+<!--off canvas menu-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        var menu = "close";
+        $('.menu-toggle').click(function () {
+            if(menu == "close"){
+                $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
+                $('.main_content').css('-webkit-transform', 'translate(10%,0)');
+                menu = "open";
+            }
+            else{
+                $('.sidebar').css('-webkit-transform', 'translate(-100%,0)');
+                $('.main_content').css('-webkit-transform', 'translate(0,0)');
+                menu = "close";
+            }
+        });
+    });
+</script>
+<!--parallax effect-->
+<!--<script type="text/javascript">-->
+<!--    var ypos, image;-->
+<!--    var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight,-->
+<!--        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );-->
+<!--    document.getElementById('content').style.maxeight = (limit - 900) + 'px';-->
+<!--    function parallax(){-->
+<!--        ypos = window.pageYOffset;-->
+<!--        image = document.getElementById('para-image');-->
+<!--        image.style.top = ypos * 1 +'px';-->
+<!--    }-->
+<!--    window.addEventListener('scroll', parallax);-->
+<!--</script>-->
 </body>
 </html>

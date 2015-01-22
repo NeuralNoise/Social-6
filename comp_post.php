@@ -58,7 +58,7 @@
 //        user image
         echo '</div>';
         echo '<div class="col-md-11">';
-        echo '<div class="well"><img src="'.$com_row['image'].'" class="comment_img"><p>'.$com_row['comment'].'</p></div>';
+        echo '<div class=""><img src="'.$com_row['image'].'" class="comment_img"><p>'.$com_row['comment'].'</p></div>';
         echo '</div>';
     }
     ?>

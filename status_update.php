@@ -13,15 +13,10 @@ $fileErrorMsg = $_FILES["file1"]["error"];
 if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
     $img = 'img/'.$fileName;
 }
-    if (strpos($get_content, 'youtube') > 0) {
+    if (preg_match('/^(http)/', $get_content)) {
         $get_vid = $get_content;
         $get_content = null;
     }
-    else if(strpos($get_content, 'vimeo') > 0){
-        $get_vid = $get_content;
-        $get_content=null;
-    }
-
 
 $query = $conn->query("insert into status_update (user_id, status, image, time, video_link) values ($user_id, '$get_content', '$img', '$date_time','$get_vid')");
 header('Location:home.php?user='.$user_id.'');
