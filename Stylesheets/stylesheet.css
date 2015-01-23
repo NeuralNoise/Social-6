@@ -56,18 +56,18 @@ a:hover{
 }
 
 /*parallax styling*/
-/*#para-image{*/
-    /*height: 900px;*/
-    /*width: 100%;*/
-    /*position: relative;*/
-    /*z-index: -1;*/
-/*}*/
-/*#content{*/
-    /*width: 100%;*/
-    /*background: #ffffff;*/
-    /*position: relative;*/
-    /*z-index: 1;*/
-/*}*/
+#para-image{
+    height: 900px;
+    width: 100%;
+    position: relative;
+    z-index: -1;
+}
+#content{
+    width: 100%;
+    background: #ffffff;
+    position: relative;
+    z-index: 1;
+}
 
 /*sidebar styling*/
 

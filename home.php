@@ -12,7 +12,7 @@
     ?>
 </head>
 <body>
-<!--<img id="para-image" src="img/Digit%20(16).jpg">-->
+<img id="para-image" src="img/Digit%20(16).jpg">
 <div class="container-fluid" id="content">
 
 <!--    off canvas menu-->
@@ -172,6 +172,7 @@
         var menu = "close";
         $('.menu-toggle').click(function () {
             if(menu == "close"){
+                var pos = window.pageYOffset;
                 $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
                 $('.main_content').css('-webkit-transform', 'translate(10%,0)');
                 menu = "open";
@@ -184,18 +185,18 @@
         });
     });
 </script>
-<!--parallax effect-->
-<!--<script type="text/javascript">-->
-<!--    var ypos, image;-->
-<!--    var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight,-->
-<!--        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );-->
-<!--    document.getElementById('content').style.maxeight = (limit - 900) + 'px';-->
-<!--    function parallax(){-->
-<!--        ypos = window.pageYOffset;-->
-<!--        image = document.getElementById('para-image');-->
-<!--        image.style.top = ypos * 1 +'px';-->
-<!--    }-->
-<!--    window.addEventListener('scroll', parallax);-->
-<!--</script>-->
+parallax effect
+<script type="text/javascript">
+    var ypos, image;
+    var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight,
+        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
+    document.getElementById('content').style.maxeight = (limit - 900) + 'px';
+    function parallax(){
+        ypos = window.pageYOffset;
+        image = document.getElementById('para-image');
+        image.style.top = ypos * 1 +'px';
+    }
+    window.addEventListener('scroll', parallax);
+</script>
 </body>
 </html>
