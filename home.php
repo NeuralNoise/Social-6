@@ -190,7 +190,6 @@ parallax effect
     var ypos, image;
     var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight,
         document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
-    document.getElementById('content').style.maxeight = (limit - 900) + 'px';
     function parallax(){
         ypos = window.pageYOffset;
         image = document.getElementById('para-image');

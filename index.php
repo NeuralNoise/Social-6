@@ -6,26 +6,26 @@
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <?php
-
-                if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                    echo '<a href="index.php" class="btn cred">Logout</a>';
-                }
-                else{
-                    echo '<a href="logout.php" class="btn cred">Login</a>';
-                }
-                ?>
-                <a class="navbar-brand">
-                    <a href="home.php"  class="btn home">Home</a>
-                </a>
-            </div>
-        </div>
-    </nav>
-</header>
+<!--<header>-->
+<!--    <nav class="navbar navbar-default">-->
+<!--        <div class="container-fluid">-->
+<!--            <div class="navbar-header">-->
+<!--                --><?php
+//
+//                if(isset($_SESSION['id']) && $_SESSION['start']== true){
+//                    echo '<a href="index.php" class="btn cred">Logout</a>';
+//                }
+//                else{
+//                    echo '<a href="logout.php" class="btn cred">Login</a>';
+//                }
+//                ?>
+<!--                <a class="navbar-brand">-->
+<!--                    <a href="home.php"  class="btn home">Home</a>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</header>-->
 <div class="container login_box">
     <form method="post" action="user_auth.php" class="form-horizontal">
         <div class="form-group">

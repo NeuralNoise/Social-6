@@ -46,4 +46,3 @@ echo $r_password;
         echo "email sent successfully";
     }
 header('Location:success.php');
-?>
