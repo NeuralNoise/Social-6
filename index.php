@@ -42,7 +42,14 @@
 </header>
 <div class="content">
     <div class="container">
-        <div class="col-md-7"></div>
+        <div class="col-md-7">
+            <?php
+            $reg = $_GET['reg'];
+            if($reg == 1){
+                echo '<h3 style="color: white">Successfully registered, Login to continue</h3>';
+            }
+            ?>
+        </div>
 
 <!-- registeration form-->
         <div class="col-md-5 register" style="color: white">

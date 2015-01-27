@@ -15,7 +15,12 @@ if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
     chmod("img/$fileName", 0755);
     $img = "img/".$fileName;
 }
-echo $user_id;
-$dp_query = $conn->query("update display_pic set dp = '$img' where user_id = $user_id");
+if(!$fileName){
+    $img = "img/default.jpg";
+    $dp_query = $conn->query("update display_pic set dp = '$img', if_default = 1 where user_id = $user_id");
+}
+else{
+    $dp_query = $conn->query("update display_pic set dp = '$img', if_default = 0 where user_id = $user_id");
+}
 header('Location:home.php?user='.$user_id.'');
 ?>

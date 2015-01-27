@@ -17,7 +17,7 @@ echo $get_id;
 echo $dp;
 $dp_query = $conn->query("insert into display_pic (user_id, dp) values ($get_id, '$dp')");
 
-header('Location:success.php');
+header('Location:index.php?reg=1');
 
 // sending verification email
 

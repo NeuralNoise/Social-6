@@ -35,12 +35,14 @@
 <div class="container">
     <?php
     $post_id = $_GET['id'];
+    $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
+    $dp_row = $dp_query->fetch();
     $post_query = $conn->query("select * from status_update where id = $post_id");
     $post_row = $post_query->fetch();
     echo '<div class="row">';
     echo '<div class="col-md-2">';
     //            user image
-    echo '<a href="dp_change.php?user=' . $user_id . '"><img src="img/img1.jpg" class="post_dp"></a>';
+    echo '<a href="dp_change.php?user=' . $user_id . '"><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
     echo '</div>';
     echo '<div class="col-md-10">';
     //            user content
@@ -53,16 +55,21 @@
     $com_query = $conn ->query("select * from comments where post_id = $post_id");
     while($com_row = $com_query->fetch()){
         echo '<div class="row">';
-        echo '<div class="col-md-1">';
-        $user_id = $com_row['user_id'];
-//        user image
+        echo '<div class="col-md-2" style="text-align: center">';
+        $comment_by = $com_row['user_id'];
+        $dp_query = $conn->query("select * from display_pic where user_id = $comment_by");
+        $dp_row = $dp_query->fetch();
+        echo '<a href="user.php?id='.$comment_by.'"><img src="'.$dp_row['dp'].'" class="comment_dp"></a>';
         echo '</div>';
-        echo '<div class="col-md-11">';
-        echo '<div class=""><img src="'.$com_row['image'].'" class="comment_img"><p>'.$com_row['comment'].'</p></div>';
+        echo '<div class="col-md-10">';
+        if($com_row['image'] != null) {
+            echo '<div class=""><img src="' . $com_row['image'] . '" class="comment_img">';
+        }
+        echo '<p style="padding: 20px 0">' . $com_row['post_comment'] . '</p></div>';
         echo '</div>';
     }
     ?>
-    <form action="add_comment.php" method="post" enctype="multipart/form-data">
+    <form action="add_comment.php" method="post" enctype="multipart/form-data" style="padding-top: 20px">
         <label>Comments</label>
         <textarea rows="5" class="form-control" name="comment"></textarea>
         <div class="fileupload btn btn-primary">

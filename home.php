@@ -6,8 +6,8 @@
     <?php
     include "connect.php";
     session_start();
-    include 'scrapy.php';
-    include 'meta_scraping.php';
+    include "scrapy.php";
+    include "meta_scraping.php";
     $user_id=$_SESSION['id'];
     ?>
 </head>
@@ -91,8 +91,8 @@
 <!--user info -img, name and status update-->
     <div class="main_content">
         <div class="row about_status">
-            <div class="col-md-1">
-                <a class="menu-toggle"><img src="img/menu-icon.png" class="menu-img"></a>
+            <div class="col-md-1" style="text-align: center">
+                <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
             </div>
             <?php
             $user_query = $conn ->query("select * from user_info where id = $user_id");
@@ -150,17 +150,6 @@
                         echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
                         echo $info->html;
                     }
-                    else{
-                        if($return = meta_scrap($url)) {
-                            $url = $return->url;
-                            $title = $return->title;
-                            $image = $return->image[0]->url;
-                            $description = $return->description;
-                        }
-                        else{
-                            $curl = curl($url);
-                        }
-                    }
                 }
                 echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
                 echo '</div>';
@@ -169,7 +158,7 @@
                 echo '</div>';
             }
             ?>
-</div>
+            </div>
         </div>
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -178,7 +167,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var menu = "close";
-        $('.menu-toggle').click(function () {
+        $('.menu_toggle').click(function () {
             if(menu == "close"){
                 var pos = window.pageYOffset;
                 $('.sidebar').css('-webkit-transform', 'translate(0, 0)');

@@ -14,6 +14,6 @@ if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
     $img = 'img/'.$fileName;
 }
 
-$query = $conn->query("insert into comments (comment, user_id, image, post_id) values ('$comment', $user_id, '$img', $get_id)");
+$query = $conn->query("insert into comments (user_id, post_id, post_comment,image) values ($user_id,$get_id,'$comment','$img')");
 header('Location:comp_post.php?id='.$get_id.'');
 ?>

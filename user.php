@@ -11,9 +11,9 @@
     $get_id = $_GET['id'];
     $user_id = $_SESSION['id'];
     $info_query = $conn->query("select * from user_info where id = $get_id");
-    $dp_query = $conn ->query("select * from profile_info where user_id = $get_id");
+    $dp_query = $conn ->query("select * from display_pic where user_id = $get_id");
     $info_row = $info_query->fetch();
-    $img_row = $dp_query->fetch();
+    $dp_row = $dp_query->fetch();
 
     ?>
 </head>
@@ -47,7 +47,7 @@
             <div class="col-md-2 dp_box">
 
                 <!--dp in php-->
-                <img src="img/img1.jpg" class="user_dp">
+                <img src="<?php echo $dp_row['dp'] ?>" class="user_dp">
             </div>
             <div class="col-md-8">
                 <?php
@@ -62,7 +62,7 @@
                 $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
                 $row = $count_query->fetchColumn();
                 if($row == 0){
-                    echo '<a href="add_friends.php?id='.$get_id.'"><p>add friends</p></a>'; //if no row exists
+                    echo '<a href="add_friends.php?id='.$get_id.'" ><p class="btn btn-info">add friends</p></a>'; //if no row exists
                 }
                 else{ //if row exists
                     $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
@@ -70,14 +70,14 @@
                     $f_row = $f_query->fetch();
                     $r_row = $r_query->fetch();
                     if($f_row['accepted'] == 1 && $r_row['accepted'] == 1){
-                        echo '<p>Friends</p>';
+                        echo '<p class="btn btn-success">Friends</p>';
                         $friend = true;
                     }
                     else if($r_row['accepted'] == 1 && $f_row['accepted'] == 0){
-                        echo '<p>Request sent</p>';
+                        echo '<p class="btn btn-default">Request sent</p>';
                     }
                     else if($r_row['accepted'] == 0 && $f_row['accepted'] == 1){
-                        echo '<p>Request received</p>';
+                        echo '<p class="btn btn-default">Request received</p>';
                         echo '<a href="accept_req.php?id='.$get_id.'"><p>Accept</p></a>';
                         echo '<a href="decline_req.php?id='.$get_id.'"><p>Decline</p></a>';
                     }
@@ -89,9 +89,11 @@
 
         if($friend)
         $post_query = $conn->query("select * from status_update where user_id = $get_id");
+        $dp_query = $conn ->query("select * from display_pic where user_id = $get_id");
+        $dp_row = $dp_query->fetch();
                 while($post_row = $post_query->fetch()) {
-                    echo '<div class="row"><div class="col-md-1">';
-                    echo '<img src="img/img1.jpg" class="user_dp"></div>';
+                    echo '<div class="row"><div class="col-md-2">';
+                    echo '<img src="'.$dp_row['dp'].'" class="post_dp"></div>';
                     echo '<div class="col-md-10">';
 
                     echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
