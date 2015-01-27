@@ -6,47 +6,88 @@
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
 </head>
 <body>
-<!--<header>-->
-<!--    <nav class="navbar navbar-default">-->
-<!--        <div class="container-fluid">-->
-<!--            <div class="navbar-header">-->
-<!--                --><?php
-//
-//                if(isset($_SESSION['id']) && $_SESSION['start']== true){
-//                    echo '<a href="index.php" class="btn cred">Logout</a>';
-//                }
-//                else{
-//                    echo '<a href="logout.php" class="btn cred">Login</a>';
-//                }
-//                ?>
-<!--                <a class="navbar-brand">-->
-<!--                    <a href="home.php"  class="btn home">Home</a>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-<!--</header>-->
-<div class="container login_box">
-    <form method="post" action="user_auth.php" class="form-horizontal">
-        <div class="form-group">
-            <label class="col-md-2">Email</label>
-            <div class="col-md-10">
-                <input type="email" name="email" placeholder="Email" required="" class="form-control">
+<header>
+    <div class="homepage">
+        <div class="container">
+
+<!--logo -->
+    <div class="col-md-2 logo">
+        <a href="#"><img src=""></a>
+    </div>
+
+<!--login -->
+    <div class="col-md-10 login">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="Email">Email address</label>
+                <input type="email" name="email" placeholder="Email" required="" class="form-control" id="Email3">
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2">Password</label>
-            <div class="col-md-10">
-                <input type="password" name="password" required="" placeholder="Password" class="form-control">
+            <div class="form-group">
+                <label class="sr-only" for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" name="password" required="" placeholder="Password">
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-md-10">
-                <input type="submit" value="Sign in" class="btn btn-default">
-                <a href="register.php" class="btn btn-default pull-right">Sign up</a>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Sign in</button>
             </div>
+        </form>
+    </div>
+    </div>
+    </div>
+</header>
+<div class="content">
+    <div class="container">
+        <div class="col-md-7"></div>
+
+<!-- registeration form-->
+        <div class="col-md-5 register">
+            <form method="post" action="add_user.php">
+                <div class="form-group form-inline">
+                    <label>Name</label>
+                    <br>
+                    <input type="text" name="firstName" placeholder="First" class="form-control" required="">
+                    <input type="text" name="lastName" placeholder="Last" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <label>Enter a valid email id</label>
+                    <input type="email" name="email" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <label>Create a Password</label>
+                    <input type="password" name="password" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <label>Birthday</label>
+                    <input type="date" name="birthday" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <br>
+                    <input type="radio" name="gender" value="Male"
+                        <?php
+                        if(isset($gender) && $gender == "Male"){
+                            echo "Male";
+                        }
+                        ?>
+                        >Male
+                    <input type="radio" name="gender" value="Female"
+                        <?php
+                        if(isset($gender) && $gender == "Female"){
+                            echo "Female";
+                        }
+                        ?>
+                        >Female
+                    <input type="radio" name="gender" value="Others"
+                        <?php
+                        if(isset($gender) && $gender == "Others"){
+                            echo "Others";
+                        }
+                        ?>
+                        >Others
+                </div>
+                <input type="submit" value="Submit" class="btn btn-default">
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>

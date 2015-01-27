@@ -2,15 +2,7 @@
     margin: 0;
     padding: 0;
 }
-.login_box{
-    width: 500px;
-    height: 200px;
-    transform: translateY(50%);
-    padding: 25px;
-    box-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(153, 148, 148, 0.54);
-    border-radius: 15px;
-}
+
 .err_msg{
     color: darkblue;
 }
@@ -113,3 +105,20 @@ a:hover{
 .badge{
     margin-left: 5px;
 }
+.homepage{
+text-align: right;
+    padding-top: 10px;
+    height: 100px;
+    background: -webkit-linear-gradient(90deg, #232526 10%, #414345 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #232526 10%, #414345 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #232526 10%, #414345 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #232526 10%, #414345 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #232526 10%, #414345 90%); /* W3C */
+
+}
+.login{
+    padding-top: 20px;
+}
+.register{
+    padding-top: 20px;
+ }
