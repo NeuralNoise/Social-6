@@ -14,7 +14,7 @@
     $dp_query = $conn ->query("select * from display_pic where user_id = $get_id");
     $info_row = $info_query->fetch();
     $dp_row = $dp_query->fetch();
-
+    include 'scrapy.php';
     ?>
 </head>
 <header>
@@ -92,34 +92,25 @@
         $dp_query = $conn ->query("select * from display_pic where user_id = $get_id");
         $dp_row = $dp_query->fetch();
                 while($post_row = $post_query->fetch()) {
-                    echo '<div class="row"><div class="col-md-2">';
+                    echo '<div class="row post"><div class="col-md-offset-2 col-md-2">';
                     echo '<img src="'.$dp_row['dp'].'" class="post_dp"></div>';
-                    echo '<div class="col-md-10">';
+                    echo '<div class="col-md-8">';
 
                     echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
-
-                    if ($post_row['video_link']) {
+                    if($post_row['video_link']) {
                         $url = $post_row['video_link'];
                         if (strpos($url, 'youtube') > 0) {
                             $info = json_decode(curl("http://www.youtube.com/oembed?url=" . $url . "&format=json"));
                             echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
                             echo $info->html;
-                        } else if (strpos($url, 'vimeo') > 0) {
-                            $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=" . $url . "&maxwidth=480&maxheight=270"));
+                        }
+                        else if (strpos($url, 'vimeo') > 0) {
+                            $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270"));
                             echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
                             echo $info->html;
-                        } else {
-                            if ($return = meta_scrap($url)) {
-                                $url = $return->url;
-                                $title = $return->title;
-                                $image = $return->image[0]->url;
-                                $description = $return->description;
-                            } else {
-                                $curl = curl($url);
-                            }
                         }
                     }
-                    echo '<p class="post_txt">' . $post_row['status'] . '</p></a>';
+                    echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
                     echo '</div></div>';
                 }
         ?>
