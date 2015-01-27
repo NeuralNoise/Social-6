@@ -17,7 +17,7 @@ if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
         $get_vid = $get_content;
         $get_content = null;
     }
-
-$query = $conn->query("insert into status_update (user_id, status, image, time, video_link) values ($user_id, '$get_content', '$img', '$date_time','$get_vid')");
+echo $user_id;
+$query = $conn->query("insert into status_update (user_id, status_post, image,time , video_link) values ($user_id, '$get_content', '$img', '$date_time','$get_vid')");
 header('Location:home.php?user='.$user_id.'');
 ?>

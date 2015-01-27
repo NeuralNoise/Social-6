@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
     <script src="../includes/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <?php
     session_start();
     include "connect.php";
@@ -40,7 +40,7 @@
     echo '<div class="row">';
     echo '<div class="col-md-2">';
     //            user image
-    echo '<a href="dp_change.php?user=' . $user_id . '"><img src="img/img1.jpg" class="user_dp"></a>';
+    echo '<a href="dp_change.php?user=' . $user_id . '"><img src="img/img1.jpg" class="post_dp"></a>';
     echo '</div>';
     echo '<div class="col-md-10">';
     //            user content
@@ -65,7 +65,10 @@
     <form action="add_comment.php" method="post" enctype="multipart/form-data">
         <label>Comments</label>
         <textarea rows="5" class="form-control" name="comment"></textarea>
-        <input type="file" id="file1" name="file1">
+        <div class="fileupload btn btn-primary">
+            <span>Upload</span>
+            <input type="file" id="file1" name="file1" style="padding: 5px 0; display: inline-block" class="upload">
+        </div>
         <?php
         echo '<input type="hidden" value="'.$post_id.'" name="post_id">';
         ?>

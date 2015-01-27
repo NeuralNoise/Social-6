@@ -21,4 +21,3 @@ if($get_password && $get_email) {
         exit();
     }
 }
-?>

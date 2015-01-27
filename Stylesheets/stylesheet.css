@@ -13,8 +13,11 @@ a:hover{
     text-decoration: none;
 }
 .user_dp{
-   max-width: 100%;
-    border-radius: 5px;
+   width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    text-align: center;
 }
 .friends{
     overflow: hidden;
@@ -53,12 +56,6 @@ a:hover{
     width: 100%;
     position: relative;
     z-index: -1;
-}
-#content{
-    width: 100%;
-    background: #ffffff;
-    position: relative;
-    z-index: 1;
 }
 
 /*sidebar styling*/
@@ -109,16 +106,81 @@ a:hover{
 text-align: right;
     padding-top: 10px;
     height: 100px;
-    background: -webkit-linear-gradient(90deg, #232526 10%, #414345 90%); /* Chrome 10+, Saf5.1+ */
-    background:    -moz-linear-gradient(90deg, #232526 10%, #414345 90%); /* FF3.6+ */
-    background:     -ms-linear-gradient(90deg, #232526 10%, #414345 90%); /* IE10 */
-    background:      -o-linear-gradient(90deg, #232526 10%, #414345 90%); /* Opera 11.10+ */
-    background:         linear-gradient(90deg, #232526 10%, #414345 90%); /* W3C */
 
+    background: -webkit-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* W3C */
 }
 .login{
     padding-top: 20px;
 }
 .register{
-    padding-top: 20px;
- }
+    padding: 20px 0;
+    transform: translateY(15%);
+}
+.content{
+    background: url("../img/Wallpaper%20(5).jpg") 50% 100%;
+    background-size: cover;
+    height: 100%;
+}
+.content input{
+    border:0;
+}
+footer{
+    height: 100px;
+    background: -webkit-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* W3C */
+}
+#logo{
+    width: 64px;
+    height: 64px;
+}
+#hi{
+    font-size: 15px;
+}
+.register input{
+    background: rgba(255, 255, 255, 0.5);
+    color: #000000;
+}
+
+/*upload button styling*/
+.fileupload{
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileupload input.upload{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+/*post user dp*/
+.post_dp{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.prev_posts{
+    text-decoration: none;
+    color: #000000;
+    cursor: pointer;
+    -webkit-transition: all .3s ease;
+}
+.prev_posts:hover{
+    color: #1249a7;
+    -webkit-transition: all .3s ease;
+}

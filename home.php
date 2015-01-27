@@ -12,11 +12,10 @@
     ?>
 </head>
 <body>
-<img id="para-image" src="img/Digit%20(16).jpg">
-<div class="container-fluid" id="content">
+<!--<img id="para-image" src="img/Digit%20(16).jpg">-->
+<div class="container-fluid">
 
 <!--    off canvas menu-->
-
     <div class="friends sidebar">
 <!--    home button-->
             <a href="home.php" class="side-option">Home</a>
@@ -88,9 +87,9 @@
         }
         ?>
     </div>
+
 <!--user info -img, name and status update-->
     <div class="main_content">
-
         <div class="row about_status">
             <div class="col-md-1">
                 <a class="menu-toggle"><img src="img/menu-icon.png" class="menu-img"></a>
@@ -98,8 +97,10 @@
             <?php
             $user_query = $conn ->query("select * from user_info where id = $user_id");
             $user_row = $user_query->fetch();
+            $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
+            $dp_row = $dp_query->fetch();
             echo '<div class="col-md-2 dp_box">';
-                echo '<a href="dp_change.php?user='.$user_id.'"><img src="img/img1.jpg" class="user_dp"></a>';
+                echo '<a href="dp_change.php?user='.$user_id.'"><img src="'.$dp_row['dp'].'" class="user_dp"></a>';
             echo '</div>';
             echo '<div class="col-md-9">';
                 echo '<p id="hi">Hi, '.$user_row['firstname'];
@@ -107,28 +108,35 @@
             <p>How u doin...</p>
                 <form action="status_update.php" method="post" enctype="multipart/form-data">
                     <textarea class="form-control" rows="2" wrap="hard" name="status"></textarea>
-                    <input type="file" id="file1" name="file1">
-                    <input type="submit" value="Submit" class="btn btn-default">
+                    <div class="" style="padding: 10px 10px 10px 0">
+                        <div class="fileUpload btn btn-primary">
+                            <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
+                        <input type="file" id="file1" name="file1" style="padding: 5px 0; display: inline-block" class="upload">
+                            </div>
+                        <input type="submit" value="Submit" class="btn btn-default" style=" display: inline-block">
+                    </div>
                 </form>
             </div>
-        </div>
+
 <!--    All posts-->
         <div class="prev_content">
-            <?php
 
+            <?php
             include "connect.php";
+            $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
+            $dp_row = $dp_query->fetch();
             $post_query = $conn->query("select * from status_update where user_id = $user_id");
             while($post_row = $post_query->fetch()) {
                 echo '<div class="row post">';
                 echo '<div class="col-md-offset-2 col-md-10">';
                 echo '<div class="row">';
-                echo '<div class="col-md-1 dp_box">';
+                echo '<div class="col-md-1">';
 //            user image
-                echo '<a href="#"><img src="img/img1.jpg" class="user_dp"></a>';
+                echo '<a href="#"><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
                 echo '</div>';
                 echo '<div class="col-md-10">';
 //            user content
-                echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
+                echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';
 
                 if($post_row['video_link']) {
                     $url = $post_row['video_link'];
@@ -154,14 +162,14 @@
                         }
                     }
                 }
-                echo '<p class="post_txt">' . $post_row['status'] . '</p></a>';
+                echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
             }
             ?>
-
+</div>
         </div>
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -184,18 +192,6 @@
             }
         });
     });
-</script>
-parallax effect
-<script type="text/javascript">
-    var ypos, image;
-    var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight,
-        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
-    function parallax(){
-        ypos = window.pageYOffset;
-        image = document.getElementById('para-image');
-        image.style.top = ypos * 1 +'px';
-    }
-    window.addEventListener('scroll', parallax);
 </script>
 </body>
 </html>

@@ -10,14 +10,14 @@
     <div class="homepage">
         <div class="container">
 
-<!--logo -->
-    <div class="col-md-2 logo">
-        <a href="#"><img src=""></a>
+<!--site logo -->
+    <div class="col-md-2">
+        <a href="#"><img src="img/logo.png" id="logo"></a>
     </div>
 
-<!--login -->
+<!--login, sigin in -->
     <div class="col-md-10 login">
-        <form class="form-inline">
+        <form class="form-inline" action="user_auth.php" method="post">
             <div class="form-group">
                 <label class="sr-only" for="Email">Email address</label>
                 <input type="email" name="email" placeholder="Email" required="" class="form-control" id="Email3">
@@ -30,6 +30,12 @@
                 <button type="submit" class="btn btn-default">Sign in</button>
             </div>
         </form>
+        <?php
+        $err = $_GET['err'];
+        if($err == 404){
+            echo '<p style="color:white; float: none">*Invalid Credential</p>';
+        }
+        ?>
     </div>
     </div>
     </div>
@@ -39,13 +45,14 @@
         <div class="col-md-7"></div>
 
 <!-- registeration form-->
-        <div class="col-md-5 register">
+        <div class="col-md-5 register" style="color: white">
+            <h2 style="padding-bottom: 10px; color: #3789C7">New User...Sign Up Now..!!</h2>
             <form method="post" action="add_user.php">
                 <div class="form-group form-inline">
                     <label>Name</label>
                     <br>
                     <input type="text" name="firstName" placeholder="First" class="form-control" required="">
-                    <input type="text" name="lastName" placeholder="Last" class="form-control" required="">
+                    <input type="text" name="lastName" placeholder="Last" class="form-control" required="" style="margin-left: 80px">
                 </div>
                 <div class="form-group">
                     <label>Enter a valid email id</label>
@@ -89,5 +96,6 @@
         </div>
     </div>
 </div>
+<footer></footer>
 </body>
 </html>
