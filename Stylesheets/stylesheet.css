@@ -22,11 +22,6 @@ a:hover{
 .friends{
     overflow: hidden;
 }
-.cred{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 .home{
     position: absolute;
     top: 0;
@@ -73,7 +68,7 @@ a:hover{
     color: #262626;
     font-size: 19px;
 }
-
+/*sidebar stying*/
 .sidebar{
     padding: 20px;
     position: fixed;
@@ -85,6 +80,9 @@ a:hover{
     overflow: hidden;
     -webkit-transform: translate(-100%, 0);
     -webkit-transition: all .5s ease;
+    background: rgb(222, 223, 223);
+
+
 }
 .sidebar h2{
     padding: 20px 0;
@@ -99,6 +97,24 @@ a:hover{
 .side-option:hover{
     color: #787878;
 }
+.sidebar_option{
+    display: block;
+    position: relative;
+    padding: 10px 15px;
+    text-align: left;
+    -webkit-transition: all .3s ease;
+}
+.sidebar_option a{
+    text-decoration: none;
+    color: #000000;
+    -webkit-transition: all .3s ease;
+}
+.sidebar_option:hover{
+    background: #ffffff;
+    color: #000000;
+}
+/*sidebar styling end*/
+
 .badge{
     margin-left: 5px;
 }
@@ -190,4 +206,9 @@ footer{
     text-align: center;
     border-radius: 50%;
     object-fit: cover;
+}
+
+/*Gyphicon size change*/
+span.glyphicon-link {
+    font-size: 1.2em !important;
 }

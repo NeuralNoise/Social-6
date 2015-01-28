@@ -18,7 +18,7 @@
 <!--    off canvas menu-->
     <div class="friends sidebar">
 <!--    home button-->
-            <a href="home.php" class="side-option">Home</a>
+            <div class="sidebar_option"><a href="home.php" class="side-option">Home</a></div>
 <!--    number of friends-->
         <?php
         $un = true;
@@ -50,7 +50,7 @@
             }
         }
         ?>
-            <a href="friend_list.php" class="side-option">Friends<span class="badge"><?php echo $friend; ?></span></a>
+            <div class="sidebar_option"><a href="friend_list.php" class="side-option">Friends<span class="badge"><?php echo $friend; ?></span></a></div>
 
 <!--        pending requests count-->
         <?php
@@ -76,18 +76,18 @@
             }
         }
         ?>
-        <a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a>
-
+        <div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>
+        <div class="sidebar_option">
         <?php
         if(isset($_SESSION['id']) && $_SESSION['start']== true){
-            echo '<a href="index.php" class="btn cred">Logout</a>';
+            echo '<a href="index.php" class="side-option">Logout</a>';
         }
         else{
-            echo '<a href="logout.php" class="btn cred">Login</a>';
+            echo '<a href="logout.php" class="side-option">Login</a>';
         }
         ?>
-    </div>
-
+        </div>
+        </div>
 <!--user info -img, name and status update-->
     <div class="main_content">
         <div class="row about_status">
