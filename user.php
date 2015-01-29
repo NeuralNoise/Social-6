@@ -22,7 +22,6 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <?php
-
                 if(isset($_SESSION['id']) && $_SESSION['start']== true){
                     echo '<a href="index.php" class="btn cred">Logout</a>';
                 }
@@ -51,9 +50,9 @@
             </div>
             <div class="col-md-8">
                 <?php
-                    echo '<p>'.$info_row['firstname'].' '.$info_row['lastname'].'</p>';
-                    echo '<p>'.$info_row['gender'].'</p>';
-                    echo '<p>'.$info_row['birth'].'</p>';
+                echo '<p>'.$info_row['firstname'].' '.$info_row['lastname'].'</p>';
+                echo '<p>'.$info_row['gender'].'</p>';
+                echo '<p>'.$info_row['birth'].'</p>';
                 ?>
             </div>
             <div class="col-md-2">
@@ -86,33 +85,31 @@
             </div>
         </div>
         <?php
-
         if($friend)
-        $post_query = $conn->query("select * from status_update where user_id = $get_id");
+            $post_query = $conn->query("select * from status_update where user_id = $get_id");
         $dp_query = $conn ->query("select * from display_pic where user_id = $get_id");
         $dp_row = $dp_query->fetch();
-                while($post_row = $post_query->fetch()) {
-                    echo '<div class="row post"><div class="col-md-offset-2 col-md-2">';
-                    echo '<img src="'.$dp_row['dp'].'" class="post_dp"></div>';
-                    echo '<div class="col-md-8">';
-
-                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
-                    if($post_row['video_link']) {
-                        $url = $post_row['video_link'];
-                        if (strpos($url, 'youtube') > 0) {
-                            $info = json_decode(curl("http://www.youtube.com/oembed?url=" . $url . "&format=json"));
-                            echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
-                            echo $info->html;
-                        }
-                        else if (strpos($url, 'vimeo') > 0) {
-                            $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270"));
-                            echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
-                            echo $info->html;
-                        }
-                    }
-                    echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
-                    echo '</div></div>';
+        while($post_row = $post_query->fetch()) {
+            echo '<div class="row post"><div class="col-md-offset-2 col-md-2">';
+            echo '<img src="'.$dp_row['dp'].'" class="post_dp"></div>';
+            echo '<div class="col-md-8">';
+            echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><img src="' . $post_row['image'] . '" class="post_img">';
+            if($post_row['video_link']) {
+                $url = $post_row['video_link'];
+                if (strpos($url, 'youtube') > 0) {
+                    $info = json_decode(curl("http://www.youtube.com/oembed?url=" . $url . "&format=json"));
+                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
+                    echo $info->html;
                 }
+                else if (strpos($url, 'vimeo') > 0) {
+                    $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270"));
+                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
+                    echo $info->html;
+                }
+            }
+            echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
+            echo '</div></div>';
+        }
         ?>
 
     </div>

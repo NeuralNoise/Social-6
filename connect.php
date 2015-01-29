@@ -12,4 +12,5 @@ catch(PDOException $e)
 {
     echo "Connection failed: " . $e->getMessage();
 }
+date_default_timezone_set('Asia/Kolkata');
 ?>

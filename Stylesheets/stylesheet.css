@@ -70,7 +70,7 @@ a:hover{
 }
 /*sidebar stying*/
 .sidebar{
-    padding: 20px;
+    padding-top: 20px;
     position: fixed;
     height: 100%;
     width: 10%;
@@ -80,8 +80,13 @@ a:hover{
     overflow: hidden;
     -webkit-transform: translate(-100%, 0);
     -webkit-transition: all .5s ease;
-    background: rgb(222, 223, 223);
 
+
+    background: -webkit-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* W3C */
 
 }
 .sidebar h2{
@@ -95,7 +100,7 @@ a:hover{
     -webkit-transition: all .3s ease;
 }
 .side-option:hover{
-    color: #787878;
+    color:#ffffff;
 }
 .sidebar_option{
     display: block;
@@ -110,8 +115,15 @@ a:hover{
     -webkit-transition: all .3s ease;
 }
 .sidebar_option:hover{
-    background: #ffffff;
-    color: #000000;
+
+
+    background: -webkit-linear-gradient(90deg, #283048 10%, #859398 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #283048 10%, #859398 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #283048 10%, #859398 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #283048 10%, #859398 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #283048 10%, #859398 90%); /* W3C */
+
+    color: white;
 }
 /*sidebar styling end*/
 
@@ -208,7 +220,8 @@ footer{
     object-fit: cover;
 }
 
-/*Gyphicon size change*/
-span.glyphicon-link {
-    font-size: 1.2em !important;
+
+.post_textbox{
+    border: 0;
+    -webkit-box-shadow: 0 0 15px 0 grey;
 }

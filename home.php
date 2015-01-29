@@ -10,10 +10,11 @@
     include "meta_scraping.php";
     $user_id=$_SESSION['id'];
     ?>
+
 </head>
 <body>
 <!--<img id="para-image" src="img/Digit%20(16).jpg">-->
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 20px">
 
 <!--    off canvas menu-->
     <div class="friends sidebar">
@@ -102,68 +103,107 @@
             echo '<div class="col-md-2 dp_box">';
                 echo '<a href="dp_change.php?user='.$user_id.'"><img src="'.$dp_row['dp'].'" class="user_dp"></a>';
             echo '</div>';
-            echo '<div class="col-md-9">';
+            echo '<div class="col-md-8">';
                 echo '<p id="hi">Hi, '.$user_row['firstname'];
             ?>
             <p>How u doin...</p>
                 <form action="status_update.php" method="post" enctype="multipart/form-data">
-                    <textarea class="form-control" rows="2" wrap="hard" name="status"></textarea>
-                    <div class="" style="padding: 10px 10px 10px 0">
-                        <div class="fileUpload btn btn-primary">
+                    <textarea class="form-control post_textbox" rows="4" wrap="hard" name="status"></textarea>
+                    <div class="" style="padding: 10px 10px 10px 0;">
+                        <div class="fileUpload btn btn-primary" style="float: left">
                             <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
                         <input type="file" id="file1" name="file1" style="padding: 5px 0; display: inline-block" class="upload">
                             </div>
-                        <input type="submit" value="Submit" class="btn btn-default" style=" display: inline-block">
+                        <img id="pre" style="width: 200px; height: auto; border: 0">
+                        <input type="submit" value="Submit" class="btn btn-default" style=" display: inline; float: right" >
                     </div>
                 </form>
             </div>
-
+</div>
 <!--    All posts-->
-        <div class="prev_content">
+        <div class="prev_content  col-md-offset-2">
 
             <?php
-            include "connect.php";
-            $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
-            $dp_row = $dp_query->fetch();
-            $post_query = $conn->query("select * from status_update where user_id = $user_id");
+//
+            $post_query = $conn->query("select * from status_update order by event_time desc");
             while($post_row = $post_query->fetch()) {
-                echo '<div class="row post">';
-                echo '<div class="col-md-offset-2 col-md-10">';
-                echo '<div class="row">';
-                echo '<div class="col-md-1">';
-//            user image
-                echo '<a href="#"><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
-                echo '</div>';
-                echo '<div class="col-md-10">';
-//            user content
-                echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';
-
-                if($post_row['video_link']) {
-                    $url = $post_row['video_link'];
-                    if (strpos($url, 'youtube') > 0) {
-                        $info = json_decode(curl("http://www.youtube.com/oembed?url=" . $url . "&format=json"));
-                        echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
-                        echo $info->html;
-                    }
-                    else if (strpos($url, 'vimeo') > 0) {
-                        $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270"));
-                        echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
-                        echo $info->html;
+                $get_id = $post_row['user_id'];
+                $id = $post_row['id'];
+                $post_id = 0;
+                if ($get_id == $user_id) {
+                    $post_id = $get_id;
+//                    print status update
+                } else {
+//                    check for friend
+                    $my_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
+                    $frnd_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+                    $my_row = $my_query->fetch();
+                    $frnd_row = $frnd_query->fetch();
+                    if ($my_row['accepted'] & $frnd_row['accepted']) {
+                        $post_id = $get_id;
                     }
                 }
-                echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
+                if (!$post_id) {
+                    continue;
+                } else {
+
+                    $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+                    $dp_row = $dp_query->fetch();
+//                    $ind_query = $conn->query("select * from status_update where user_id = $get_id");
+//                    $post_row = $ind_query->fetch();
+                    echo '<div class="row post">';
+                    echo '<div class="col-md-2 text-center">';
+//user image
+                    echo '<a><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
+                    echo '</div>';
+                    echo '<div class="col-md-10">';
+//user post
+                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';
+                    if($post_row['video_link']) {
+                        $url = $post_row['video_link'];
+                        if (strpos($url, 'youtube') > 0) {
+                            $info = json_decode(curl("http://www.youtube.com/oembed?url=" . $url . "&format=json"));
+                            echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
+                            echo $info->html;
+                        }
+                        else if (strpos($url, 'vimeo') > 0) {
+                            $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270"));
+                            echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
+                            echo $info->html;
+                        }
+                    }
+                    echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
+                    echo '</div>';
+                    echo '</div>';
+
+                }
             }
             ?>
-            </div>
+
         </div>
     </div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../includes/js/bootstrap.min.js"></script>
 <!--off canvas menu-->
+<script type="text/javascript">
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#pre').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file1").change(function(){
+        readURL(this);
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function(){
         var menu = "close";
