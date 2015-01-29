@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Slabo 27px', serif;
 }
 
 .err_msg{
@@ -73,31 +74,25 @@ a:hover{
     padding-top: 20px;
     position: fixed;
     height: 100%;
-    width: 10%;
+    width: 15%;
     top: 0;
     left: 0;
-    background: #ffffff;
     overflow: hidden;
     -webkit-transform: translate(-100%, 0);
     -webkit-transition: all .5s ease;
-
-
-    background: -webkit-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* Chrome 10+, Saf5.1+ */
-    background:    -moz-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* FF3.6+ */
-    background:     -ms-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* IE10 */
-    background:      -o-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* Opera 11.10+ */
-    background:         linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* W3C */
+    background: #F1F2F4;
 
 }
 .sidebar h2{
     padding: 20px 0;
-    color:#000000;
+    color:#434343;
     -webkit-transition: all .3s ease;
 }
 .side-option{
     display: block;
     color: #000000;
     -webkit-transition: all .3s ease;
+    font-size: 15px;
 }
 .side-option:hover{
     color:#ffffff;
@@ -111,19 +106,12 @@ a:hover{
 }
 .sidebar_option a{
     text-decoration: none;
-    color: #000000;
+    color: #434343;
     -webkit-transition: all .3s ease;
 }
 .sidebar_option:hover{
-
-
-    background: -webkit-linear-gradient(90deg, #283048 10%, #859398 90%); /* Chrome 10+, Saf5.1+ */
-    background:    -moz-linear-gradient(90deg, #283048 10%, #859398 90%); /* FF3.6+ */
-    background:     -ms-linear-gradient(90deg, #283048 10%, #859398 90%); /* IE10 */
-    background:      -o-linear-gradient(90deg, #283048 10%, #859398 90%); /* Opera 11.10+ */
-    background:         linear-gradient(90deg, #283048 10%, #859398 90%); /* W3C */
-
-    color: white;
+    background: #DFE2E9;
+    color:#666769;
 }
 /*sidebar styling end*/
 
@@ -148,10 +136,15 @@ text-align: right;
     padding: 20px 0;
     transform: translateY(15%);
 }
+.overlay{
+    background-color: rgba(0, 0, 0, 0.53);
+    height: 100%;
+}
 .content{
-    background: url("../img/Wallpaper%20(5).jpg") 50% 100%;
+    background: url("../img/Wallpaper%20(5).jpg");
     background-size: cover;
     height: 100%;
+    background-position: 50% 100%;
 }
 .content input{
     border:0;
@@ -164,7 +157,7 @@ footer{
     background:      -o-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Opera 11.10+ */
     background:         linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* W3C */
 }
-#logo{
+.logo{
     width: 64px;
     height: 64px;
 }
@@ -172,15 +165,14 @@ footer{
     font-size: 15px;
 }
 .register input{
-    background: rgba(255, 255, 255, 0.5);
-    color: #000000;
+    background: #ffffff;
+    color: #434343;
 }
 
 /*upload button styling*/
 .fileupload{
     position: relative;
     overflow: hidden;
-    margin: 10px;
 }
 .fileupload input.upload{
     position: absolute;
@@ -204,7 +196,7 @@ footer{
 }
 .prev_posts{
     text-decoration: none;
-    color: #000000;
+    color: #434343;
     cursor: pointer;
     -webkit-transition: all .3s ease;
 }

@@ -12,7 +12,7 @@
 
 <!--site logo -->
     <div class="col-md-2">
-        <a href="#"><img src="img/logo.png" id="logo"></a>
+        <a href="#"><img src="img/logo.png" class="logo"></a>
     </div>
 
 <!--login, sigin in -->
@@ -41,6 +41,7 @@
     </div>
 </header>
 <div class="content">
+    <div class="overlay">
     <div class="container">
         <div class="col-md-7">
             <?php
@@ -53,7 +54,7 @@
 
 <!-- registeration form-->
         <div class="col-md-5 register" style="color: white">
-            <h2 style="padding-bottom: 10px; color: #3789C7">New User...Sign Up Now..!!</h2>
+            <h2 style="padding-bottom: 10px; color: white">New User...Sign Up Now..!!</h2>
             <form method="post" action="add_user.php">
                 <div class="form-group form-inline">
                     <label>Name</label>
@@ -103,6 +104,7 @@
         </div>
     </div>
 </div>
+    </div>
 <footer></footer>
 </body>
 </html>

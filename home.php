@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
+    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <?php
     include "connect.php";
     session_start();
@@ -18,6 +19,7 @@
 
 <!--    off canvas menu-->
     <div class="friends sidebar">
+            <div class="side-option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
 <!--    home button-->
             <div class="sidebar_option"><a href="home.php" class="side-option">Home</a></div>
 <!--    number of friends-->
@@ -78,6 +80,7 @@
         }
         ?>
         <div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>
+        <div class="sidebar_option"><a href="#" class="side-option">Settings</a></div>
         <div class="sidebar_option">
         <?php
         if(isset($_SESSION['id']) && $_SESSION['start']== true){
@@ -90,7 +93,7 @@
         </div>
         </div>
 <!--user info -img, name and status update-->
-    <div class="main_content">
+    <div class="main_content container">
         <div class="row about_status">
             <div class="col-md-1" style="text-align: center">
                 <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
@@ -110,12 +113,15 @@
                 <form action="status_update.php" method="post" enctype="multipart/form-data">
                     <textarea class="form-control post_textbox" rows="4" wrap="hard" name="status"></textarea>
                     <div class="" style="padding: 10px 10px 10px 0;">
-                        <div class="fileUpload btn btn-primary" style="float: left">
+                        <div class="preview">
+                            <img id="pre" style="width: 200px; height: auto; border: 0">
+                        </div>
+                        <div class="fileUpload btn btn-primary" style="float: left; margin-right: 10px">
                             <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
                         <input type="file" id="file1" name="file1" style="padding: 5px 0; display: inline-block" class="upload">
                             </div>
-                        <img id="pre" style="width: 200px; height: auto; border: 0">
-                        <input type="submit" value="Submit" class="btn btn-default" style=" display: inline; float: right" >
+
+                        <input type="submit" value="Submit" class="btn btn-default" style=" display: inline;" >
                     </div>
                 </form>
             </div>
@@ -181,8 +187,8 @@
             ?>
 
         </div>
+    <a href="#" class="scrollToTop"><img src="" </a>
     </div>
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../includes/js/bootstrap.min.js"></script>
 <!--off canvas menu-->
@@ -211,12 +217,14 @@
             if(menu == "close"){
                 var pos = window.pageYOffset;
                 $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
-                $('.main_content').css('-webkit-transform', 'translate(10%,0)');
+                $('.main_content').css('-webkit-transform', 'translate(15%,0)');
+                $('.menu-img').attr('src','img/back.png');
                 menu = "open";
             }
             else{
                 $('.sidebar').css('-webkit-transform', 'translate(-100%,0)');
                 $('.main_content').css('-webkit-transform', 'translate(0,0)');
+                $('.menu-img').attr('src','img/menu-icon.png');
                 menu = "close";
             }
         });

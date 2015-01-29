@@ -1,10 +1,10 @@
 <?php
 
 $_SESSION['start']=false;
-session_unset();
+$_SESSION['id'] = 0;
+
 session_destroy();
-session_write_close();
-setcookie(session_name(),'',0,'/');
-session_regenerate_id(true);
+session_commit();
+setcookie("user", "", time() - 3600);
 header('Location: index.php');
 exit();
