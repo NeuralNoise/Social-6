@@ -14,10 +14,12 @@ if(move_uploaded_file($fileTmpLoc, "img/$fileName")){
     $img = 'img/'.$fileName;
 }
     if (preg_match('/^(http)/', $get_content)) {
-        $get_vid = $get_content;
+        $get_vid = preg_replace('/\s+/', '', $get_content);
         $get_content = null;
     }
 echo $user_id;
+//echo $get_vid;
+
 $query = $conn->query("insert into status_update (user_id, status_post, image, video_link) values ($user_id, '$get_content', '$img','$get_vid')");
 header('Location:home.php?user='.$user_id.'');
 ?>

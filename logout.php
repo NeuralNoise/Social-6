@@ -2,6 +2,7 @@
 
 $_SESSION['start']=false;
 $_SESSION['id'] = 0;
+unset($_SESSION['id']);
 
 session_destroy();
 session_commit();

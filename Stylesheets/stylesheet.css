@@ -217,3 +217,11 @@ footer{
     border: 0;
     -webkit-box-shadow: 0 0 15px 0 grey;
 }
+.scrap img{
+    height: 400px;
+    overflow: hidden;
+}
+
+.scrap a{
+    text-decoration: none;
+}

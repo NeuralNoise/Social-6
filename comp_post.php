@@ -10,6 +10,7 @@
     $user_id = $_SESSION['id'];
     //Your php code goes here
     include 'scrapy.php';
+    include 'meta_scraping.php';
     ?>
 </head>
 <body>
@@ -105,8 +106,10 @@
     echo '</div>';
     echo '<div class="col-md-9">';
     //            user content
-    echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';
-
+    if($post_row['status_post'] || $post_row['image']) {
+        echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';
+        echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
+    }
     if($post_row['video_link']) {
         $url = $post_row['video_link'];
         if (strpos($url, 'youtube') > 0) {
@@ -119,8 +122,20 @@
             echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
             echo $info->html;
         }
+        else if(!(strpos($url, 'vimeo') > 0) && !(strpos($url, 'youtube') > 0) ){
+            $output = meta_scrap($url);
+            $title = $output->title;
+            $image = $output->image[0]->url;
+            $description = $output->description;
+            $url = $output->url;
+            echo '<div class="scrap"><a href="comp_post.php?id=' . $post_row['id'] . '">';
+            echo '<p>'.$title.'</p>';
+            echo '<img src="'.$image.'" >';
+            echo '<p class="description">'.$description.'</p>';
+            echo '</a>';
+            echo '</div>';
+        }
     }
-    echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
     echo '</div></div>';
     echo '<div class="col-md-offset-2">';
     $com_query = $conn ->query("select * from comments where post_id = $post_id");
