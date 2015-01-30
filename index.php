@@ -16,7 +16,7 @@
     </div>
 
 <!--login, sigin in -->
-    <div class="col-md-10 login">
+    <div class="col-md-6 login col-md-offset-4">
         <form class="form-inline" action="user_auth.php" method="post">
             <div class="form-group">
                 <label class="sr-only" for="Email">Email address</label>
@@ -26,9 +26,11 @@
                 <label class="sr-only" for="Password">Password</label>
                 <input type="password" class="form-control" id="Password" name="password" required="" placeholder="Password">
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-default">Sign in</button>
+            <div class="form-group" style="margin-top: 10px">
+                <input type="checkbox" value="1" name="remember">Remember me
+                <button type="submit" class="btn btn-default" style="margin-left: 20px;">Sign in</button>
             </div>
+
         </form>
         <?php
         $err = $_GET['err'];

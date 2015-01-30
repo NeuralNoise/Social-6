@@ -121,7 +121,7 @@ a:hover{
 .homepage{
 text-align: right;
     padding-top: 10px;
-    height: 100px;
+    height: 120px;
 
     background: -webkit-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Chrome 10+, Saf5.1+ */
     background:    -moz-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* FF3.6+ */

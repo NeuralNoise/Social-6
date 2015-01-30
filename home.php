@@ -10,6 +10,10 @@
     include "scrapy.php";
     include "meta_scraping.php";
     $user_id=$_SESSION['id'];
+    $user_query = $conn ->query("select * from user_info where id = $user_id");
+    $user_row = $user_query->fetch();
+    $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
+    $dp_row = $dp_query->fetch();
     ?>
 
 </head>
@@ -22,6 +26,10 @@
             <div class="side-option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
 <!--    home button-->
             <div class="sidebar_option"><a href="home.php" class="side-option">Home</a></div>
+
+        <div class="sidebar_option"><a href="aboutu.php" class="side-option"><?php
+
+                echo $user_row['firstname']; ?></a></div>
 <!--    number of friends-->
         <?php
         $un = true;
@@ -99,10 +107,7 @@
                 <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
             </div>
             <?php
-            $user_query = $conn ->query("select * from user_info where id = $user_id");
-            $user_row = $user_query->fetch();
-            $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
-            $dp_row = $dp_query->fetch();
+
             echo '<div class="col-md-2 dp_box">';
                 echo '<a href="dp_change.php?user='.$user_id.'"><img src="'.$dp_row['dp'].'" class="user_dp"></a>';
             echo '</div>';

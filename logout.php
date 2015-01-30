@@ -1,11 +1,9 @@
 <?php
 
 $_SESSION['start']=false;
-$_SESSION['id'] = 0;
+session_unset();
 unset($_SESSION['id']);
-
+setcookie("userid", 0 , time()-7600, "/");
 session_destroy();
-session_commit();
-setcookie("user", "", time() - 3600);
 header('Location: index.php');
-exit();
+die("Redirecting to login page..please wait");
