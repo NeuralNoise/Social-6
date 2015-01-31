@@ -15,7 +15,7 @@ if($get_password && $get_email) {
 
 //        Remember me
           if($remember){
-              setcookie("userid", $row['id'], time()+7600, "/");
+              setcookie("userid", $row['id'], time()+ 300,  "/");
           }
         header('Location: home.php#hi');
         exit();

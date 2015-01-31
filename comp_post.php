@@ -88,7 +88,7 @@
         ?>
     </div>
 </div>
-<div class="main_content">
+<div class="main_content container">
     <div class="row">
     <div class="col-md-1" style="text-align: center">
         <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
@@ -128,11 +128,10 @@
             $image = $output->image[0]->url;
             $description = $output->description;
             $url = $output->url;
-            echo '<div class="scrap"><a href="comp_post.php?id=' . $post_row['id'] . '">';
+            echo '<div class="scrap">';
             echo '<p>'.$title.'</p>';
             echo '<img src="'.$image.'" >';
             echo '<p class="description">'.$description.'</p>';
-            echo '</a>';
             echo '</div>';
         }
     }
@@ -157,7 +156,7 @@
     ?>
     <form action="add_comment.php" method="post" enctype="multipart/form-data" style="padding-top: 20px">
         <label>Comments</label>
-        <textarea rows="5" class="form-control" name="comment"></textarea>
+        <textarea rows="5" class="form-control" name="comment" id="comment"></textarea>
         <div class="fileupload btn btn-primary">
             <span>Upload</span>
             <input type="file" id="file1" name="file1" style="padding: 5px 0; display: inline-block" class="upload">

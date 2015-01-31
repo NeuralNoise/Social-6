@@ -88,7 +88,7 @@
         }
         ?>
         <div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>
-        <div class="sidebar_option"><a href="#" class="side-option">Settings</a></div>
+        <div class="sidebar_option"><a href="settings.php" class="side-option">Settings</a></div>
         <div class="sidebar_option">
         <?php
         if(isset($_SESSION['id']) && $_SESSION['start']== true){
@@ -113,6 +113,7 @@
             echo '</div>';
             echo '<div class="col-md-8">';
                 echo '<p id="hi">Hi, '.$user_row['firstname'];
+            echo $_COOKIE['userid'];
             ?>
             <p>How u doin...</p>
                 <form action="status_update.php" method="post" enctype="multipart/form-data">
@@ -199,7 +200,11 @@
                             echo '</div>';
                         }
                     }
-
+                    echo '<div class="list-inline post_link_box">';
+                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '#comment"><img src="img/comments.png" class="post_links"></a>';
+                    echo '<div id="like"><img src="img/like.png" class="post_links"><img src="img/like_done.png" class="post_links" style="display: none"></div>';
+                    echo '<a href="'.$url.'" target="_blank"><img src="img/external_link.png" class="post_links"></a>';
+                    echo '</div>';
                     echo '</div>';
                     echo '</div>';
 
@@ -249,6 +254,10 @@
                 menu = "close";
             }
         });
+        $('#like').click(function(){
+            $(this).find('img').toggle();
+        });
+
     });
 </script>
 </body>
