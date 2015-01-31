@@ -48,8 +48,13 @@
         <div class="col-md-7">
             <?php
             $reg = $_GET['reg'];
+            $login = $_GET['login'];
             if($reg == 1){
                 echo '<h3 style="color: white">Successfully registered, Login to continue</h3>';
+            }
+            if($login == 0)
+            {
+                echo '<h3 style="color: white">Hey there...</h3>';
             }
             ?>
         </div>

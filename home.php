@@ -7,13 +7,21 @@
     <?php
     include "connect.php";
     session_start();
+    if(!$_COOKIE['userid'] && !$_SESSION['id']){
+        header('Location:index.php?login=0');
+    }
     include "scrapy.php";
     include "meta_scraping.php";
-    $user_id=$_SESSION['id'];
+    $user_id = $_SESSION['id'];
+    if(!$_SESSION['id']){
+        $user_id = $_COOKIE['userid'];
+    }
+    echo $_COOKIE['userid'];
     $user_query = $conn ->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
     $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
     $dp_row = $dp_query->fetch();
+
     ?>
 
 </head>
@@ -86,8 +94,11 @@
                 }
             }
         }
+        if(!$ad){
+            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>';
+        }
         ?>
-        <div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>
+
         <div class="sidebar_option"><a href="settings.php" class="side-option">Settings</a></div>
         <div class="sidebar_option">
         <?php
@@ -113,7 +124,6 @@
             echo '</div>';
             echo '<div class="col-md-8">';
                 echo '<p id="hi">Hi, '.$user_row['firstname'];
-            echo $_COOKIE['userid'];
             ?>
             <p>How u doin...</p>
                 <form action="status_update.php" method="post" enctype="multipart/form-data">
@@ -200,10 +210,12 @@
                             echo '</div>';
                         }
                     }
+                    echo '<div class="row" style="padding-top: 5px;text-align: center">';
                     echo '<div class="list-inline post_link_box">';
                     echo '<a href="comp_post.php?id=' . $post_row['id'] . '#comment"><img src="img/comments.png" class="post_links"></a>';
                     echo '<div id="like"><img src="img/like.png" class="post_links"><img src="img/like_done.png" class="post_links" style="display: none"></div>';
                     echo '<a href="'.$url.'" target="_blank"><img src="img/external_link.png" class="post_links"></a>';
+                    echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -257,7 +269,6 @@
         $('#like').click(function(){
             $(this).find('img').toggle();
         });
-
     });
 </script>
 </body>

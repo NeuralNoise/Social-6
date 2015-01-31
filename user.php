@@ -17,25 +17,7 @@
     include 'scrapy.php';
     ?>
 </head>
-<header>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <?php
-                if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                    echo '<a href="index.php" class="btn cred">Logout</a>';
-                }
-                else{
-                    echo '<a href="logout.php" class="btn cred">Login</a>';
-                }
-                ?>
-                <a class="navbar-brand">
-                    <a href="home.php"  class="btn home">Home</a>
-                </a>
-            </div>
-        </div>
-    </nav>
-</header>
+
 <body>
 <div class="container-fluid">
     <!--     Your html code goes here-->

@@ -6,11 +6,17 @@
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <?php
     session_start();
+    if(!$_COOKIE['userid'] && !$_SESSION['id']){
+        header('Location:index.php?login=0');
+    }
     include "connect.php";
     $user_id = $_SESSION['id'];
     //Your php code goes here
     include 'scrapy.php';
     include 'meta_scraping.php';
+    if(!$_SESSION['id']){
+        $user_id = $_COOKIE['userid'];
+    }
     ?>
 </head>
 <body>

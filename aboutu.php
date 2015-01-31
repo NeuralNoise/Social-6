@@ -7,9 +7,15 @@
     <?php
     include "connect.php";
     session_start();
+    if(!$_COOKIE['userid'] && !$_SESSION['id']){
+        header('Location:index.php?login=0');
+    }
     include "scrapy.php";
     include "meta_scraping.php";
     $user_id=$_SESSION['id'];
+    if(!$_SESSION['id']){
+        $user_id = $_COOKIE['userid'];
+    }
     $user_query = $conn ->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
     $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
