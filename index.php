@@ -11,7 +11,7 @@
         <div class="container">
 
 <!--site logo -->
-    <div class="col-md-2">
+    <div class="col-md-2 text-center">
         <a href="#"><img src="img/logo.png" class="logo"></a>
     </div>
 

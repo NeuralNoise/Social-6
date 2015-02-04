@@ -28,7 +28,7 @@
 <body>
 <!--<img id="para-image" src="img/Digit%20(16).jpg">-->
 <div class="container-fluid" style="margin-top: 20px">
-
+    <div style="position: fixed; top:0; right: 0; " class="pull-right"><a href="change_background.php" class="add_image"><img src="img/add.png" style="width: 40px; height: 40px"></a></div>
 <!--    off canvas menu-->
     <div class="friends sidebar">
             <div class="side-option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
@@ -225,8 +225,10 @@
             ?>
 
         </div>
-    <a href="#" class="scrollToTop"><img src="" </a>
     </div>
+    <a href="#" class="scrollToTop"><img src="img/to_top.png"></a>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../includes/js/bootstrap.min.js"></script>
 <!--off canvas menu-->
@@ -255,7 +257,7 @@
             if(menu == "close"){
                 var pos = window.pageYOffset;
                 $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
-                $('.main_content').css('-webkit-transform', 'translate(15%,0)');
+                $('.main_content').css('-webkit-transform', 'translate(10%,0)');
                 $('.menu-img').attr('src','img/back.png');
                 menu = "open";
             }
@@ -269,7 +271,23 @@
         $('#like').click(function(){
             $(this).find('img').toggle();
         });
-    });
+
+            //Check to see if the window is top if not then display button
+            $(window).scroll(function(){
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollToTop').fadeIn();
+                } else {
+                    $('.scrollToTop').fadeOut();
+                }
+            });
+
+            //Click event to scroll to top
+            $('.scrollToTop').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+
+        });
 </script>
 </body>
 </html>

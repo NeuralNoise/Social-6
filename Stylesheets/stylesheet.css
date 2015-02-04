@@ -74,18 +74,18 @@ a:hover{
     padding-top: 20px;
     position: fixed;
     height: 100%;
-    width: 15%;
+    width: 10%;
     top: 0;
     left: 0;
     overflow: hidden;
     -webkit-transform: translate(-100%, 0);
     -webkit-transition: all .5s ease;
-    background: #F1F2F4;
+    background: #282828;
 
 }
 .sidebar h2{
     padding: 20px 0;
-    color:#434343;
+    color: #c4c4c4;
     -webkit-transition: all .3s ease;
 }
 .side-option{
@@ -106,12 +106,12 @@ a:hover{
 }
 .sidebar_option a{
     text-decoration: none;
-    color: #434343;
+    color: #a6a6a6;
     -webkit-transition: all .3s ease;
 }
 .sidebar_option:hover{
-    background: #DFE2E9;
-    color:#666769;
+    background: #4b4e55;
+    color: #c2c3c5;
 }
 /*sidebar styling end*/
 
@@ -136,15 +136,22 @@ text-align: right;
     padding: 20px 0;
     transform: translateY(15%);
 }
-.overlay{
+.overlay:hover{
+    -webkit-transition: all .5s ease;
     background-color: rgba(0, 0, 0, 0.53);
     height: 100%;
 }
 .content{
+
     background: url("../img/Wallpaper%20(5).jpg");
     background-size: cover;
     height: 100%;
     background-position: 50% 100%;
+}
+.overlay{
+    height: 100%;
+    -webkit-transition: all .5s ease;
+    background-color: transparent;
 }
 .content input{
     border:0;
@@ -233,4 +240,17 @@ footer{
     display: inline-flex;
 
     padding: 0 10px;
+}
+.fixed_btn{
+
+}
+.scrollToTop{
+    width: 70px;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: none;
 }

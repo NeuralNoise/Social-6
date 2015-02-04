@@ -95,33 +95,33 @@
         </div>
     </div>
 
-<div class="main_content">
-    <div class="row" style="text-align: center">
-        <div class="col-md-1" style="text-align: center">
-            <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
-        </div>
-    <div class="col-md-10">
-    <?php
-    $query = $conn ->query("select * from display_pic where user_id = $id");
-    $row = $query->fetch();
-    echo '<img style="width:600px" src="'.$row['dp'].'" class="" id="pre">';
-    ?>
-</div>
-        </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-4">
-    <form id="upload_form" action="image_uploader.php?img=1" method="post" enctype="multipart/form-data">
-        <h3>Select file to upload:</h3>
-        <div class="fileUpload btn btn-primary">
-            <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
-        <input type="file" name="file1" id="file1" value="Add" class="upload">
+    <div class="main_content">
+        <div class="row" style="text-align: center">
+            <div class="col-md-1" style="text-align: center">
+                <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
             </div>
-        <input type="submit" value="Update" class="btn btn-default">
-    </form>
+            <div class="col-md-10">
+                <?php
+                $query = $conn ->query("select * from display_pic where user_id = $id");
+                $row = $query->fetch();
+                echo '<img style="width:600px" src="'.$row['bg_img'].'" class="" id="pre">';
+                ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+                <form id="upload_form" action="image_uploader.php?img=2" method="post" enctype="multipart/form-data">
+                    <h3>Select file to upload:</h3>
+                    <div class="fileUpload btn btn-primary">
+                        <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
+                        <input type="file" name="file1" id="file1" value="Add" class="upload">
+                    </div>
+                    <input type="submit" value="Update" class="btn btn-default">
+                </form>
+            </div>
         </div>
     </div>
 </div>
-    </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../includes/js/bootstrap.min.js"></script>
 <!--off canvas menu-->
