@@ -150,7 +150,7 @@
             if(menu == "close"){
                 var pos = window.pageYOffset;
                 $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
-                $('.main_content').css('-webkit-transform', 'translate(10%,0)');
+                $('.main_content').css('-webkit-transform', 'translate(15%,0)');
                 menu = "open";
             }
             else{

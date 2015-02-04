@@ -26,17 +26,18 @@
 
 </head>
 <body>
+<!--<img src="img/Wallpaper%20(13).jpg" style="position:fixed;">-->
 <!--<img id="para-image" src="img/Digit%20(16).jpg">-->
-<div class="container-fluid" style="margin-top: 20px">
-    <div style="position: fixed; top:0; right: 0; " class="pull-right"><a href="change_background.php" class="add_image"><img src="img/add.png" style="width: 40px; height: 40px"></a></div>
+<div class="container-fluid" style="padding-top: 20px">
+    <div style="position: fixed; right: 0; " class="pull-right"><a href="change_background.php?user=<?php echo $user_id; ?> " class="add_image"><img src="img/add.png" style="width: 40px; height: 40px"></a></div>
 <!--    off canvas menu-->
     <div class="friends sidebar">
-            <div class="side-option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
-<!--    home button-->
-            <div class="sidebar_option"><a href="home.php" class="side-option">Home</a></div>
+            <div class="sidebar_option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
+<!--    home button-->gcd \
+            <div class="sidebar_option"><a href="home.php" class="side-option"><span><img src="img/home.png"></span>Home</a></div>
 
         <div class="sidebar_option"><a href="aboutu.php" class="side-option"><?php
-
+                echo '<span><img src="'.$dp_row['dp'].'" class="user_dp"></span>';
                 echo $user_row['firstname']; ?></a></div>
 <!--    number of friends-->
         <?php
@@ -69,7 +70,7 @@
             }
         }
         ?>
-            <div class="sidebar_option"><a href="friend_list.php" class="side-option">Friends<span class="badge"><?php echo $friend; ?></span></a></div>
+            <div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/friends-icon.png"></span>Friends<span class="badge"><?php echo $friend; ?></span></a></div>
 
 <!--        pending requests count-->
         <?php
@@ -99,20 +100,17 @@
         }
         ?>
 
-        <div class="sidebar_option"><a href="settings.php" class="side-option">Settings</a></div>
+        <div class="sidebar_option"><a href="settings.php" class="side-option"><span><img src="img/settings.png"></span>Settings</a></div>
         <div class="sidebar_option">
         <?php
         if(isset($_SESSION['id']) && $_SESSION['start']== true){
-            echo '<a href="logout.php" class="side-option">Logout</a>';
-        }
-        else{
-            echo '<a href="index.php" class="side-option">Login</a>';
+            echo '<a href="logout.php" class="side-option"><span><img src="img/logout.png"></span>Logout</a>';
         }
         ?>
         </div>
         </div>
 <!--user info -img, name and status update-->
-    <div class="main_content container">
+    <div class="main_content">
         <div class="row about_status">
             <div class="col-md-1" style="text-align: center">
                 <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
@@ -122,7 +120,7 @@
             echo '<div class="col-md-2 dp_box">';
                 echo '<a href="dp_change.php?user='.$user_id.'"><img src="'.$dp_row['dp'].'" class="user_dp"></a>';
             echo '</div>';
-            echo '<div class="col-md-8">';
+            echo '<div class="col-md-6">';
                 echo '<p id="hi">Hi, '.$user_row['firstname'];
             ?>
             <p>How u doin...</p>
@@ -178,7 +176,7 @@
 //user image
                     echo '<a><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
                     echo '</div>';
-                    echo '<div class="col-md-10">';
+                    echo '<div class="col-md-6">';
 //user post
                     if($post_row['status_post'] || $post_row['image']) {
                         echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';
@@ -213,7 +211,7 @@
                     echo '<div class="row" style="padding-top: 5px;text-align: center">';
                     echo '<div class="list-inline post_link_box">';
                     echo '<a href="comp_post.php?id=' . $post_row['id'] . '#comment"><img src="img/comments.png" class="post_links"></a>';
-                    echo '<div id="like"><img src="img/like.png" class="post_links"><img src="img/like_done.png" class="post_links" style="display: none"></div>';
+                    echo '<a id="like"><img src="img/like.png" class="post_links" ></a>';
                     echo '<a href="'.$url.'" target="_blank"><img src="img/external_link.png" class="post_links"></a>';
                     echo '</div>';
                     echo '</div>';
@@ -257,7 +255,7 @@
             if(menu == "close"){
                 var pos = window.pageYOffset;
                 $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
-                $('.main_content').css('-webkit-transform', 'translate(10%,0)');
+                $('.main_content').css('-webkit-transform', 'translate(15%,0)');
                 $('.menu-img').attr('src','img/back.png');
                 menu = "open";
             }
@@ -268,8 +266,16 @@
                 menu = "close";
             }
         });
-        $('#like').click(function(){
-            $(this).find('img').toggle();
+        var like = 0;
+        $('#like').click(function (){
+           if(like == 0){
+               $('#like img').attr('src', 'img/like.png');
+               like = 1;
+           }
+            else if(like == 1){
+               $('#like img').attr('src', 'img/like_done.png');
+               like = 0;
+           }
         });
 
             //Check to see if the window is top if not then display button
