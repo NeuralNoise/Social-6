@@ -110,7 +110,7 @@
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-4">
-                <form id="upload_form" action="image_uploader.php?img=1" method="post" enctype="multipart/form-data">
+                <form id="upload_form" action="image_uploader.php?img=2" method="post" enctype="multipart/form-data">
                     <h3>Select file to upload:</h3>
                     <div class="fileUpload btn btn-primary">
                         <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>

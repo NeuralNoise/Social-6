@@ -33,7 +33,7 @@
 <!--    off canvas menu-->
     <div class="friends sidebar">
             <div class="sidebar_option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
-<!--    home button-->gcd \
+<!--    home button-->
             <div class="sidebar_option"><a href="home.php" class="side-option"><span><img src="img/home.png"></span>Home</a></div>
 
         <div class="sidebar_option"><a href="aboutu.php" class="side-option"><?php
@@ -211,7 +211,6 @@
                     echo '<div class="row" style="padding-top: 5px;text-align: center">';
                     echo '<div class="list-inline post_link_box">';
                     echo '<a href="comp_post.php?id=' . $post_row['id'] . '#comment"><img src="img/comments.png" class="post_links"></a>';
-                    echo '<a id="like"><img src="img/like.png" class="post_links" ></a>';
                     echo '<a href="'.$url.'" target="_blank"><img src="img/external_link.png" class="post_links"></a>';
                     echo '</div>';
                     echo '</div>';
@@ -248,6 +247,7 @@
         readURL(this);
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
         var menu = "close";
@@ -266,14 +266,18 @@
                 menu = "close";
             }
         });
+//        $('.row.post').addClass("hidden").viewportChecker({
+//            classToAdd: 'visible animated fadeInDown', // Class to add to the elements when they are visible
+//            offset: 10000
+//        });
         var like = 0;
         $('#like').click(function (){
            if(like == 0){
-               $('#like img').attr('src', 'img/like.png');
+               $('.like img').attr('src', 'img/like.png');
                like = 1;
            }
             else if(like == 1){
-               $('#like img').attr('src', 'img/like_done.png');
+               $('.like img').attr('src', 'img/like_done.png');
                like = 0;
            }
         });

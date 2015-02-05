@@ -142,27 +142,30 @@
         }
     }
     echo '</div></div>';
-    echo '<div class="col-md-offset-2">';
+    echo '<div class="col-md-offset-2 col-md-8">';
     $com_query = $conn ->query("select * from comments where post_id = $post_id");
     while($com_row = $com_query->fetch()){
-        echo '<div class="row">';
-        echo '<div class="col-md-2" style="text-align: center">';
+        echo '<div class="row" style="padding: 10px 0">';
+        echo '<div class="col-md-2" style="text-align: center;">';
         $comment_by = $com_row['user_id'];
         $dp_query = $conn->query("select * from display_pic where user_id = $comment_by");
         $dp_row = $dp_query->fetch();
-        echo '<a href="user.php?id='.$comment_by.'"><img src="'.$dp_row['dp'].'" class="comment_dp"></a>';
+        $user_query = $conn->query("select * from user_info where id = $comment_by");
+        $user_row = $user_query->fetch();
+        echo '<a href="user.php?id='.$comment_by.'"><img src="'.$dp_row['dp'].'" class="comment_dp">';
         echo '</div>';
         echo '<div class="col-md-10">';
+        echo '<p>'.$user_row['firstname'].$user_row['lastname'].'</p></a>';
         if($com_row['image'] != null) {
             echo '<div class=""><img src="' . $com_row['image'] . '" class="comment_img">';
         }
-        echo '<p style="padding: 20px 0">' . $com_row['post_comment'] . '</p></div>';
+        echo '<p>' . $com_row['post_comment'] . '</p></div>';
         echo '</div>';
     }
     ?>
     <form action="add_comment.php" method="post" enctype="multipart/form-data" style="padding-top: 20px">
         <label>Comments</label>
-        <textarea rows="5" class="form-control" name="comment" id="comment"></textarea>
+        <textarea rows="5" class="form-control" name="comment" id="comment" style="margin-bottom: 10px"></textarea>
         <div class="fileupload btn btn-primary">
             <span>Upload</span>
             <input type="file" id="file1" name="file1" style="padding: 5px 0; display: inline-block" class="upload">

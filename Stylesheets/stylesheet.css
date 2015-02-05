@@ -80,7 +80,7 @@ a:hover{
     overflow: hidden;
     -webkit-transform: translate(-100%, 0);
     -webkit-transition: all .5s ease;
-    background: #282828;
+    background: #e9e9e9;
 
 }
 .sidebar h2{
@@ -90,7 +90,7 @@ a:hover{
 }
 .side-option{
     display: block;
-    color: #000000;
+    color: #201717;
     -webkit-transition: all .3s ease;
     font-size: 15px;
 }
@@ -126,12 +126,6 @@ a:hover{
 text-align: right;
     padding-top: 10px;
     height: 120px;
-
-    background: -webkit-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Chrome 10+, Saf5.1+ */
-    background:    -moz-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* FF3.6+ */
-    background:     -ms-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* IE10 */
-    background:      -o-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Opera 11.10+ */
-    background:         linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* W3C */
 }
 .login{
     padding-top: 20px;
@@ -142,31 +136,22 @@ text-align: right;
 }
 .overlay:hover{
     -webkit-transition: all .5s ease;
-    background-color: rgba(0, 0, 0, 0.53);
+    /*background-color: rgba(0, 0, 0, 0.53);*/
     height: 100%;
 }
 .content{
-
-    background: url("../img/Wallpaper%20(5).jpg");
-    background-size: cover;
     height: 100%;
-    background-position: 50% 100%;
 }
 .overlay{
     height: 100%;
     -webkit-transition: all .5s ease;
-    background-color: transparent;
+    /*background-color: transparent;*/
 }
 .content input{
     border:0;
 }
 footer{
     height: 100px;
-    background: -webkit-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Chrome 10+, Saf5.1+ */
-    background:    -moz-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* FF3.6+ */
-    background:     -ms-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* IE10 */
-    background:      -o-linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* Opera 11.10+ */
-    background:         linear-gradient(90deg, #7474BF 10%, #348AC7 90%); /* W3C */
 }
 .logo{
     width: 64px;
@@ -257,4 +242,10 @@ footer{
     bottom: 40px;
     right: 40px;
     display: none;
+}
+#login_page{
+   background-image: url("../img/10.jpg");
+    background-size: cover;
+    background-position: 50% 35%;
+
 }

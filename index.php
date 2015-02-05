@@ -5,14 +5,13 @@
     <script src="../includes/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
 </head>
-<body>
+<body id="login_page">
 <header>
     <div class="homepage">
         <div class="container">
 
-<!--site logo -->
     <div class="col-md-2 text-center">
-        <a href="#"><img src="img/logo.png" class="logo"></a>
+        <a href="#"><img src="" class="logo"></a>
     </div>
 
 <!--login, sigin in -->
