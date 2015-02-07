@@ -3,20 +3,23 @@
     <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
-    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 </head>
-<body id="login_page" style="font-family: 'Lobster', cursive !important;">
+<body id="login_page">
 <div class="welcome">
+<!--    <img src="img/welcome.png" id="layer1">-->
     <a href="#" data-toggle="modal" data-target="#login"><img src="img/welcome.png" id="welcome_img" ></a>
-
+<!--    <img src="img/welcome.png" id="layer2">-->
 
     <!-- Modal -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" style="width: 75%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
                 <div class="modal-body">
-                    <h4 class="modal-title" id="myModalLabel" style="margin-bottom: 10px">Holla..!!</h4>
                     <form class="form-inline" action="user_auth.php" method="post">
                         <div class="form-group">
                             <label class="sr-only" for="Email">Email address</label>
@@ -26,12 +29,10 @@
                             <label class="sr-only" for="Password">Password</label>
                             <input type="password" class="form-control" id="Password" name="password" required="" placeholder="Password">
                         </div>
-                        <div class="row">
-                        <div class="form-group col-md-offset-4" style="margin-top: 10px; text-align: right">
+                        <div class="form-group" style="margin-top: 10px">
                             <input type="checkbox" value="1" name="remember">Remember me
                             <button type="submit" class="btn btn-default" style="margin-left: 20px;">Sign in</button>
-                            <a href="#" data-toggle="modal" data-target="#register" class="btn btn-default">New User</a>
-                        </div>
+                            <a href="#" data-toggle="modal" data-target="#register">New User</a>
                         </div>
                     </form>
                 </div>
@@ -40,8 +41,11 @@
     </div>
     <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" style="width: 90%; padding: 5px">
-                    <h4 class="modal-title" id="myModalLabel" style="margin: 10px;">New User...??</h4>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
                 <div class="modal-body">
                     <form method="post" action="add_user.php">
                         <div class="form-group form-inline">
@@ -93,7 +97,7 @@
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../includes/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../includes/js/bootstrap.min.js"></script>
 </body>
 </html>

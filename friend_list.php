@@ -4,34 +4,42 @@
     <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="menu-trans/assets/css/hmbrgr.min.css" />
+
     <?php
     include "connect.php";
     session_start();
+    if(!$_COOKIE['userid'] && !$_SESSION['id']){
+        header('Location:index.php?login=0');
+    }
     include "scrapy.php";
     include "meta_scraping.php";
-    $user_id=$_SESSION['id'];
+    $user_id = $_SESSION['id'];
+    if(!$_SESSION['id']){
+        $user_id = $_COOKIE['userid'];
+    }
+    echo $_COOKIE['userid'];
     $user_query = $conn ->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
     $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
     $dp_row = $dp_query->fetch();
-    if(!$_SESSION['id']){
-        $user_id = $_COOKIE['userid'];
-    }
+
     ?>
 
 </head>
 <body>
+<!--<img src="img/Wallpaper%20(13).jpg" style="position:fixed;">-->
 <!--<img id="para-image" src="img/Digit%20(16).jpg">-->
-<div class="container-fluid" style="margin-top: 20px">
-
+<div class="container-fluid" style="padding-top: 20px">
+    <div style="position: fixed; right: 0; " class="pull-right"><a href="change_background.php?user=<?php echo $user_id; ?> " class="add_image"><img src="img/add.png" style="width: 40px; height: 40px"></a></div>
     <!--    off canvas menu-->
     <div class="friends sidebar">
-        <div class="side-option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
+        <div class="sidebar_option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
         <!--    home button-->
-        <div class="sidebar_option"><a href="home.php" class="side-option">Home</a></div>
+        <div class="sidebar_option"><a href="home.php" class="side-option"><span><img src="img/home.png"></span>Home</a></div>
 
         <div class="sidebar_option"><a href="aboutu.php" class="side-option"><?php
-
+                echo '<span><img src="'.$dp_row['dp'].'" class="user_dp"></span>';
                 echo $user_row['firstname']; ?></a></div>
         <!--    number of friends-->
         <?php
@@ -64,7 +72,7 @@
             }
         }
         ?>
-        <div class="sidebar_option"><a href="friend_list.php" class="side-option">Friends<span class="badge"><?php echo $friend; ?></span></a></div>
+        <div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/friends-icon.png"></span>Friends<span class="badge"><?php echo $friend; ?></span></a></div>
 
         <!--        pending requests count-->
         <?php
@@ -89,24 +97,25 @@
                 }
             }
         }
+        if(!$ad){
+            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>';
+        }
         ?>
-        <div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>
-        <div class="sidebar_option"><a href="settings.php" class="side-option">Settings</a></div>
+
+        <div class="sidebar_option"><a href="settings.php" class="side-option"><span><img src="img/settings.png"></span>Settings</a></div>
         <div class="sidebar_option">
             <?php
             if(isset($_SESSION['id']) && $_SESSION['start']== true){
-                echo '<a href="logout.php" class="side-option">Logout</a>';
-            }
-            else{
-                echo '<a href="index.php" class="side-option">Login</a>';
+                echo '<a href="logout.php" class="side-option"><span><img src="img/logout.png"></span>Logout</a>';
             }
             ?>
         </div>
     </div>
-    <div class="main_content container">
+    <!--user info -img, name and status update-->
+    <div class="main_content">
         <div class="row about_status">
             <div class="col-md-1" style="text-align: center">
-                <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
+                <a href="#" class="menu_toggle hmbrgr" ></a>
             </div>
                     <div class="col-md-8">
 
@@ -138,8 +147,12 @@ while($row = $query->fetch()) {
                 }
                 $user_query = $conn->query("select * from user_info where id = $get_id");
                 $user_row = $user_query->fetch();
-                echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                echo '<p class="">' . $user_row['email'] . '</p>';
+                $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+                $dp_row = $dp_query->fetch();
+                echo '<div class="friend_box">';
+                echo '<div style="margin: 5px;"><img src="'.$dp_row['dp'].'" class="friend_dp"></div>';
+                echo '<a href="user.php?id=' . $user_row['id'] . '"><div class="frnd_info">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '<br>';
+                echo $user_row['email'] . '</div></a></div>';
             }
         }
     }
@@ -163,9 +176,10 @@ while($row = $query->fetch()) {
                     $ad = false;
                 }
                 $user_query = $conn->query("select * from user_info where id = $get_id");
-                $user_row = $user_query->fetch();
-                echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                echo '<p class="">' . $user_row['email'] . '</p>';
+                $user_row = $user_query->fetch();echo '<div class="friend_box">';
+                echo '<div style="margin: 5px;"><img src="'.$dp_row['dp'].'" class="friend_dp"></div>';
+                echo '<a href="user.php?id=' . $user_row['id'] . '"><div class="frnd_info name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '<br>';
+                echo  $user_row['email'] . '</div></a></div>';
             }
         }
     }
@@ -184,8 +198,10 @@ while($row = $query->fetch()) {
             }
             $user_query = $conn->query("select * from user_info where id = $get_id");
             $user_row = $user_query->fetch();
-            echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-            echo '<p class="">' . $user_row['email'] . '</p>';
+            echo '<div class="friend_box">';
+            echo '<div style="margin: 5px;"><img src="'.$dp_row['dp'].'" class="friend_dp"></div>';
+            echo '<a href="user.php?id=' . $user_row['id'] . '"><div class="frnd_info">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '<br>';
+            echo $user_row['email'] . '</div></a></div>';
             //if no row exists
         }
         else if($row == 1){
@@ -197,8 +213,10 @@ while($row = $query->fetch()) {
             if ($r_row['accepted'] == 1 && $f_row['accepted'] == 0) {
                 $user_query = $conn->query("select * from user_info where id = $get_id");
                 $user_row = $user_query->fetch();
-                echo '<a href="user.php?id=' . $user_row['id'] . '"><p class="name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '</p></a>';
-                echo '<p class="">' . $user_row['email'] . '</p>';
+                echo '<div class="friend_box">';
+                echo '<div style="margin: 5px;"><img src="'.$dp_row['dp'].'" class="friend_dp"></div>';
+                echo '<a href="user.php?id=' . $user_row['id'] . '"><div class="frnd_info">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '<br>';
+                echo $user_row['email'] . '</div></a></div>';
             }
         }
     }
@@ -209,9 +227,18 @@ while($row = $query->fetch()) {
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="menu-trans/assets/js/jquery.hmbrgr.min.js"></script>
 <script src="../includes/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        $('.hmbrgr').hmbrgr({
+            width     : 50, 		// optional - set hamburger width
+            height    : 30, 		// optional - set hamburger height
+            speed     : 200,		// optional - set animation speed
+            barHeight : 4,			// optional - set bars height
+            barRadius : 0,			// optional - set bars border radius
+            barColor  : '#000000'	// optional - set bars color
+        });
         var menu = "close";
         $('.menu_toggle').click(function () {
             if(menu == "close"){
