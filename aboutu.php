@@ -97,7 +97,7 @@
             }
         }
         if(!$ad){
-            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>';
+            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/received.png"></span>Pending<span class="badge"><?php echo $request; ?></span></a></div>';
         }
         ?>
 

@@ -98,7 +98,7 @@
             }
         }
         if(!$ad){
-            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>';
+            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/received.png"></span>Pending<span class="badge"><?php echo $request; ?></span></a></div>';
         }
         ?>
 
@@ -132,7 +132,7 @@
             echo '<p>'.$user_row['birth'].'</p>';
             echo '<p>'.$user_row['email'].'</p>';
             echo '</div>';
-            echo '<div class="col-md-1 text-center">';
+            echo '<div class="col-md-2 text-center">';
 
                 $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
                 $row = $count_query->fetchColumn();
@@ -172,27 +172,33 @@
         $post_query = $conn->query("select * from status_update order by event_time desc");
         while($post_row = $post_query->fetch()) {
             $get_id = $post_row['user_id'];
+        $my_count = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
+        $my_row = $my_count->fetch();
+        $frnd_count = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+        $frnd_row = $frnd_count->fetch();
+        if($frnd_row['accepted'] == 1 && $my_row['accepted'] == 1){
             $id = $post_row['id'];
             $post_id = 0;
 
-                if($get_id == $_GET['id']){
-                $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
-                $dp_row = $dp_query->fetch();
+                if($get_id == $_GET['id']) {
+                    $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+                    $dp_row = $dp_query->fetch();
 //                    $ind_query = $conn->query("select * from status_update where user_id = $get_id");
 //                    $post_row = $ind_query->fetch();
-                echo '<div class="row post">';
-                echo '<div class="col-md-2 text-center">';
+                    echo '<div class="row post">';
+                    echo '<div class="col-md-2 text-center">';
 //user image
-                echo '<a><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
-                echo '</div>';
-                echo '<div class="col-md-6">';
+                    echo '<a><img src="' . $dp_row['dp'] . '" class="post_dp"></a>';
+                    echo '</div>';
+                    echo '<div class="col-md-6">';
 //user post
-                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><p style="font-size:20px">'.$post_row['title'].'</p><img src="' . $post_row['image'] . '" class="post_img">';
+                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><p style="font-size:20px">' . $post_row['title'] . '</p><img src="' . $post_row['image'] . '" class="post_img">';
                     echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
 
-                echo '</div>';
-                echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
 
+                }
             }
         }
         ?>

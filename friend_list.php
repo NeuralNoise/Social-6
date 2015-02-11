@@ -28,10 +28,8 @@
 
 </head>
 <body>
-<!--<img src="img/Wallpaper%20(13).jpg" style="position:fixed;">-->
-<!--<img id="para-image" src="img/Digit%20(16).jpg">-->
+
 <div class="container-fluid" style="padding-top: 20px">
-    <div style="position: fixed; right: 0; " class="pull-right"><a href="change_background.php?user=<?php echo $user_id; ?> " class="add_image"><img src="img/add.png" style="width: 40px; height: 40px"></a></div>
     <!--    off canvas menu-->
     <div class="friends sidebar">
         <div class="sidebar_option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
@@ -98,7 +96,7 @@
             }
         }
         if(!$ad){
-            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option">Pending<span class="badge"><?php echo $request; ?></span></a></div>';
+            echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/received.png"></span>Pending<span class="badge"><?php echo $request; ?></span></a></div>';
         }
         ?>
 
@@ -118,7 +116,7 @@
                 <a href="#" class="menu_toggle hmbrgr" ></a>
             </div>
                     <div class="col-md-8">
-
+<!--friend list, pending and you may know-->
 <?php
 include 'connect.php';
 session_start();
