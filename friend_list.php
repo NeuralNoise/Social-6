@@ -132,9 +132,7 @@ $query = $conn->query("select * from user_info");
 while($row = $query->fetch()) {
     $get_id = $row['id'];
     if ($get_id != $user_id) {
-        $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
-        $row = $count_query->fetchColumn();
-        if($row == 1){
+
             $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
             $r_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
             $f_row = $f_query->fetch();
@@ -155,7 +153,6 @@ while($row = $query->fetch()) {
                 echo $user_row['email'] . '</div></a></div>';
             }
         }
-    }
 }
 // pending requests
 $query = $conn->query("select * from user_info");

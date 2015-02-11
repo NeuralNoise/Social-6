@@ -127,10 +127,40 @@
             echo '<div class="col-md-2 dp_box">';
             echo '<a href="dp_change.php?user='.$user_id.'"><img src="'.$dp_row['dp'].'" class="user_dp"></a>';
             echo '</div>';
-            echo '<div class="col-md-8">';
+            echo '<div class="col-md-6">';
             echo '<p id="hi">'.$user_row['firstname'].' '.$user_row['lastname'];
             echo '<p>'.$user_row['birth'].'</p>';
             echo '<p>'.$user_row['email'].'</p>';
+            echo '</div>';
+            echo '<div class="col-md-1 text-center">';
+
+                $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
+                $row = $count_query->fetchColumn();
+                if ($row == 0) {
+                    echo '<a href="add_friends.php?id=' . $get_id . '"><img src="img/add_friend.png" style="width:50px"></a>'; //if no row exists
+                }
+
+                $my_count = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
+                $my_row = $my_count->fetch();
+                $frnd_count = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+                $frnd_row = $frnd_count->fetch();
+                if($frnd_row['accepted'] == 1 && $my_row['accepted'] == 1){
+                    echo '<img src="img/friends-icon.png" style="width: 50px">';
+                }
+                 if($my_row['accepted'] == 1 && $frnd_row['accepted'] == 0){
+                    echo '<img src="img/request.png" style="width: 50px">';
+                }
+                if($my_row['accepted'] == 0 && $frnd_row['accepted'] == 1){
+                echo '<img src="img/request.png" style="width: 50px">';
+                    echo '<div>';
+                echo '<a href="accept_req.php?id='.$get_id.'"><img src="img/accept.png" style="width:50px;"></a>';
+                echo '<a href="decline_req.php?id='.$get_id.'"><img src="img/cancel.png"  style="width:50px;"></a>';
+                    echo '</div>';
+                }
+
+
+
+            echo '</div>'
             ?>
 
         </div>
