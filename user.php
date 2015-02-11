@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="menu-trans/assets/css/hmbrgr.min.css" />
+
     <?php
     include "connect.php";
     session_start();
@@ -16,11 +18,11 @@
     if(!$_SESSION['id']){
         $user_id = $_COOKIE['userid'];
     }
-    echo $_COOKIE['userid'];
-    $get_id = $_GET['id'];
-    $user_query = $conn ->query("select * from user_info where id = $get_id");
+
+    $_COOKIE['userid'];
+    $user_query = $conn ->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
-    $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+    $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
     $dp_row = $dp_query->fetch();
 
     ?>
@@ -30,7 +32,6 @@
 <!--<img src="img/Wallpaper%20(13).jpg" style="position:fixed;">-->
 <!--<img id="para-image" src="img/Digit%20(16).jpg">-->
 <div class="container-fluid" style="padding-top: 20px">
-    <div style="position: fixed; right: 0; " class="pull-right"><a href="change_background.php?user=<?php echo $user_id; ?> " class="add_image"><img src="img/add.png" style="width: 40px; height: 40px"></a></div>
     <!--    off canvas menu-->
     <div class="friends sidebar">
         <div class="sidebar_option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
@@ -110,12 +111,18 @@
             ?>
         </div>
     </div>
+    <!--user info -img, name and status update-->
     <div class="main_content">
         <div class="row about_status">
             <div class="col-md-1" style="text-align: center">
-                <a class="menu_toggle"><img src="img/menu-icon.png" class="menu-img"></a>
+                <a href="#" class="menu_toggle hmbrgr" ></a>
             </div>
             <?php
+            $get_id = $_GET['id'];
+            $user_query = $conn ->query("select * from user_info where id = $get_id");
+            $user_row = $user_query->fetch();
+            $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+            $dp_row = $dp_query->fetch();
 
             echo '<div class="col-md-2 dp_box">';
             echo '<a href="dp_change.php?user='.$user_id.'"><img src="'.$dp_row['dp'].'" class="user_dp"></a>';
@@ -128,14 +135,44 @@
 
         </div>
     </div>
+    <div class="prev_content  col-md-offset-2">
 
+        <?php
+        //
+        $post_query = $conn->query("select * from status_update order by event_time desc");
+        while($post_row = $post_query->fetch()) {
+            $get_id = $post_row['user_id'];
+            $id = $post_row['id'];
+            $post_id = 0;
 
+                if($get_id == $_GET['id']){
+                $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+                $dp_row = $dp_query->fetch();
+//                    $ind_query = $conn->query("select * from status_update where user_id = $get_id");
+//                    $post_row = $ind_query->fetch();
+                echo '<div class="row post">';
+                echo '<div class="col-md-2 text-center">';
+//user image
+                echo '<a><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
+                echo '</div>';
+                echo '<div class="col-md-6">';
+//user post
+                    echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><p style="font-size:20px">'.$post_row['title'].'</p><img src="' . $post_row['image'] . '" class="post_img">';
+                    echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
 
+                echo '</div>';
+                echo '</div>';
 
+            }
+        }
+        ?>
 
-
+    </div>
+    <a href="#" class="scrollToTop"><img src="" </a>
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="menu-trans/assets/js/jquery.hmbrgr.min.js"></script>
     <script src="../includes/js/bootstrap.min.js"></script>
     <!--off canvas menu-->
     <script type="text/javascript">
@@ -158,6 +195,14 @@
     </script>
 
     <script type="text/javascript">
+        $('.hmbrgr').hmbrgr({
+            width     : 50, 		// optional - set hamburger width
+            height    : 30, 		// optional - set hamburger height
+            speed     : 200,		// optional - set animation speed
+            barHeight : 4,			// optional - set bars height
+            barRadius : 0,			// optional - set bars border radius
+            barColor  : '#000000'	// optional - set bars color
+        });
         $(document).ready(function(){
             var menu = "close";
             $('.menu_toggle').click(function () {
@@ -175,22 +220,6 @@
                     menu = "close";
                 }
             });
-//        $('.row.post').addClass("hidden").viewportChecker({
-//            classToAdd: 'visible animated fadeInDown', // Class to add to the elements when they are visible
-//            offset: 10000
-//        });
-            var like = 0;
-            $('#like').click(function (){
-                if(like == 0){
-                    $('.like img').attr('src', 'img/like.png');
-                    like = 1;
-                }
-                else if(like == 1){
-                    $('.like img').attr('src', 'img/like_done.png');
-                    like = 0;
-                }
-            });
-
             //Check to see if the window is top if not then display button
             $(window).scroll(function(){
                 if ($(this).scrollTop() > 100) {

@@ -176,7 +176,10 @@ while($row = $query->fetch()) {
                     $ad = false;
                 }
                 $user_query = $conn->query("select * from user_info where id = $get_id");
-                $user_row = $user_query->fetch();echo '<div class="friend_box">';
+                $user_row = $user_query->fetch();
+                $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+                $dp_row = $dp_query->fetch();
+                echo '<div class="friend_box">';
                 echo '<div style="margin: 5px;"><img src="'.$dp_row['dp'].'" class="friend_dp"></div>';
                 echo '<a href="user.php?id=' . $user_row['id'] . '"><div class="frnd_info name">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '<br>';
                 echo  $user_row['email'] . '</div></a></div>';
@@ -198,6 +201,8 @@ while($row = $query->fetch()) {
             }
             $user_query = $conn->query("select * from user_info where id = $get_id");
             $user_row = $user_query->fetch();
+            $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+            $dp_row = $dp_query->fetch();
             echo '<div class="friend_box">';
             echo '<div style="margin: 5px;"><img src="'.$dp_row['dp'].'" class="friend_dp"></div>';
             echo '<a href="user.php?id=' . $user_row['id'] . '"><div class="frnd_info">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '<br>';
@@ -213,6 +218,8 @@ while($row = $query->fetch()) {
             if ($r_row['accepted'] == 1 && $f_row['accepted'] == 0) {
                 $user_query = $conn->query("select * from user_info where id = $get_id");
                 $user_row = $user_query->fetch();
+                $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
+                $dp_row = $dp_query->fetch();
                 echo '<div class="friend_box">';
                 echo '<div style="margin: 5px;"><img src="'.$dp_row['dp'].'" class="friend_dp"></div>';
                 echo '<a href="user.php?id=' . $user_row['id'] . '"><div class="frnd_info">' . $user_row['firstname'] . ' ' . $user_row['lastname'] . '<br>';

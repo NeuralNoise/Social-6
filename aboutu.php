@@ -156,7 +156,7 @@
 //user image
                 echo '<a><img src="'.$dp_row['dp'].'" class="post_dp"></a>';
                 echo '</div>';
-                echo '<div class="col-md-10">';
+                echo '<div class="col-md-6">';
 //user post
                 if($post_row['status_post'] || $post_row['image']) {
                     echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';

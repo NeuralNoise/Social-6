@@ -125,8 +125,8 @@
                 echo '<p id="hi">Hi, '.$user_row['firstname'];
             ?>
             <p>How u doin...</p>
-                <form action="status_update.php" method="post" enctype="multipart/form-data">
-                    <textarea class="form-control post_textbox" rows="4" wrap="hard" name="status" required=""></textarea>
+                <form action="" method="post" enctype="multipart/form-data" id="status_post">
+                    <textarea class="form-control post_textbox" rows="4" wrap="hard" name="status" required="" placeholder=""></textarea>
                     <div class="" style="padding: 10px 10px 10px 0;">
                         <div class="preview">
                             <img id="pre" style="width: 200px; height: auto; border: 0">
@@ -135,19 +135,20 @@
                             <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
                         <input type="file" id="file1" name="file1" style="padding: 5px 0; display: inline-block" class="upload">
                             </div>
-                        <input type="submit" value="Submit" class="btn btn-default" style=" display: inline;" >
+                        <input type="submit" value="Submit" class="btn btn-default submit" style=" display: inline;" >
                     </div>
                 </form>
+            <div style="text-align: center"><img id="message" src="img/loading.GIF" style="opacity: 0; width: 50px"></div>
             </div>
-</div>
+            </div>
 <!--    All posts-->
         <div class="prev_content  col-md-offset-2">
-
+            <ul>
             <?php
-//
+            echo '<li>';
             $post_query = $conn->query("select * from status_update order by event_time desc");
             while($post_row = $post_query->fetch()) {
-                echo '<div>';
+
                 $get_id = $post_row['user_id'];
                 $id = $post_row['id'];
                 $post_id = 0;
@@ -177,57 +178,34 @@
                     echo '</div>';
                     echo '<div class="col-md-6">';
 //user post
-                    if($post_row['status_post'] || $post_row['image']) {
-                        echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><img src="' . $post_row['image'] . '" class="post_img">';
+                        echo '<a href="comp_post.php?id=' . $post_row['id'] . '" class="prev_posts"><p style="font-size:20px">'.$post_row['title'].'</p><img src="' . $post_row['image'] . '" class="post_img">';
                         echo '<p class="post_txt">' . $post_row['status_post'] . '</p></a>';
-                    }
-                    if($post_row['video_link']) {
-                        $url = $post_row['video_link'];
-                        if (strpos($url, 'youtube') > 0) {
-                            $info = json_decode(curl("http://www.youtube.com/oembed?url=" . $url . "&format=json"));
-                            echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
-                            echo $info->html;
-                        }
-                        else if (strpos($url, 'vimeo') > 0) {
-                            $info = json_decode(curl("http://vimeo.com/api/oembed.json?url=".$url."&maxwidth=480&maxheight=270"));
-                            echo '<a href="comp_post.php?id=' . $post_row['id'] . '"><p>' . $info->title . '</p></a>';
-                            echo $info->html;
-                        }
-                        else if(!(strpos($url, 'vimeo') > 0) && !(strpos($url, 'youtube') > 0) ){
-                            $output = meta_scrap($url);
-                            $title = $output->title;
-                            $image = $output->image[0]->url;
-                            $description = $output->description;
-                            $url = $output->url;
-                            echo '<div class="scrap"><a href="comp_post.php?id=' . $post_row['id'] . '">';
-                            echo '<p>'.$title.'</p>';
-                            echo '<img src="'.$image.'" >';
-                            echo '<p class="description">'.$description.'</p>';
-                            echo '</a>';
-                            echo '</div>';
-                        }
-                    }
+
                     echo '<div class="comments_link" >';
-                    echo '<div class="">';
+                    echo '<div>';
                     echo '<a href="comp_post.php?id=' . $post_row['id'] . '#comment" data-toogle="tooltip" data-placement="right" title="Comments" onclick="comments_field();"><img src="img/comment.png" class="post_links"></a>';
-                    echo '<a href="'.$url.'" target="_blank" data-toogle="tooltip" data-placement="right" title="Link"><img src="img/external_link.png" class="post_links"></a>';
+                    if($post_row['video_link']) {
+                        echo '<a href="'. $post_row['video_link'] .'" target="_blank" data-toogle="tooltip" data-placement="right" title="Link"><img src="img/external_link.png" class="post_links"></a>';
+                    }
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                    echo '</div>';
+
 
                 }
                 echo '</div>';
+                echo '</li>';
             }
             ?>
-
+            </ul>
         </div>
-    </div>
+
     <a href="#" class="scrollToTop"><img src="img/to_top.png"></a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="menu-trans/assets/js/jquery.hmbrgr.min.js"></script>
 <script src="../includes/js/bootstrap.min.js"></script>
+<script src="ajax.js" type="application/javascript"></script>
 <!--off canvas menu-->
 <script type="text/javascript">
     function readURL(input) {
@@ -247,7 +225,6 @@
         readURL(this);
     });
 </script>
-
 <script type="text/javascript">
     $('.hmbrgr').hmbrgr({
         width     : 50, 		// optional - set hamburger width
