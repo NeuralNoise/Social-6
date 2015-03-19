@@ -1,7 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
+    <link rel="stylesheet" href="includes/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="menu-trans/assets/css/hmbrgr.min.css" />
@@ -28,8 +28,6 @@
 
 </head>
 <body>
-<!--<img src="img/Wallpaper%20(13).jpg" style="position:fixed;">-->
-<!--<img id="para-image" src="img/Digit%20(16).jpg">-->
 <div class="container-fluid" style="padding-top: 20px">
     <!--    off canvas menu-->
     <div class="friends sidebar">
@@ -125,14 +123,6 @@
                     <?php
                     echo '<img src="'.$dp_row['dp'].'" style="max-width:100%;" id="pre">';
                     ?>
-                        <div class="fileUpload btn btn-primary">
-                            <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
-                            <input type="file" name="file1" id="file1" value="Add" class="upload">
-                        </div>
-                        <input type="submit" name="submit" value="Update" class="btn btn-primary">
-                </div>
-                <div class="col-md-4">
-
                         <?php echo $user_row['firstname']; ?><input type="text" class="form-control" placeholder="First Name" name="firstname">
                         <?php echo $user_row['lastname']; ?><input type="text" class="form-control" placeholder="Last Name" name="lastname">
                         <?php echo $user_row['birth']; ?><input type="date" class="form-control" placeholder="Birthday" name="birth">
@@ -140,6 +130,11 @@
                         Password<input type="password" class="form-control" placeholder="Password" name="password">
                         Confirm Password<input type="password" class="form-control" placeholder="Confirm Password" name="c_password">
 
+                    <div class="fileUpload btn btn-primary">
+                        <span>Add<span class="glyphicon glyphicon-picture" aria-hidden="true" style="padding-left: 5px"></span></span>
+                        <input type="file" name="file1" id="file1" value="Add" class="upload">
+                    </div>
+                    <input type="submit" name="submit" value="Update" class="btn btn-primary">
                     </form>
                     <?php
                     $err = $_GET['err'];
@@ -160,7 +155,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="menu-trans/assets/js/jquery.hmbrgr.min.js"></script>
-<script src="../includes/js/bootstrap.min.js"></script>
+<script src="includes/js/bootstrap.min.js"></script>
 <!--off canvas menu-->
 <script type="text/javascript">
     function readURL(input) {

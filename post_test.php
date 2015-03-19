@@ -1,7 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
+    <link rel="stylesheet" href="includes/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="menu-trans/assets/css/hmbrgr.min.css" />

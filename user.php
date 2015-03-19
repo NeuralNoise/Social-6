@@ -1,26 +1,26 @@
 <html>
 <head>
-    <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../includes/css/bootstrap.min.css">
+    <link rel="stylesheet" href="includes/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="includes/css/bootstrap.min.css">
     <link rel="stylesheet" href="Stylesheets/stylesheet.css">
     <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="menu-trans/assets/css/hmbrgr.min.css" />
+    <link rel="stylesheet" type="text/css" href="menu-trans/assets/css/hmbrgr.min.css"/>
 
     <?php
     include "connect.php";
     session_start();
-    if(!$_COOKIE['userid'] && !$_SESSION['id']){
+    if (!$_COOKIE['userid'] && !$_SESSION['id']) {
         header('Location:index.php?login=0');
     }
     include "scrapy.php";
     include "meta_scraping.php";
     $user_id = $_SESSION['id'];
-    if(!$_SESSION['id']){
+    if (!$_SESSION['id']) {
         $user_id = $_COOKIE['userid'];
     }
 
     $_COOKIE['userid'];
-    $user_query = $conn ->query("select * from user_info where id = $user_id");
+    $user_query = $conn->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
     $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
     $dp_row = $dp_query->fetch();
@@ -34,12 +34,14 @@
 <div class="container-fluid" style="padding-top: 20px">
     <!--    off canvas menu-->
     <div class="friends sidebar">
-        <div class="sidebar_option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a></div>
+        <div class="sidebar_option"><a href="#"><img src="img/logo.png" class="logo" style="margin-left: 10px"></a>
+        </div>
         <!--    home button-->
-        <div class="sidebar_option"><a href="home.php" class="side-option"><span><img src="img/home.png"></span>Home</a></div>
+        <div class="sidebar_option"><a href="home.php" class="side-option"><span><img src="img/home.png"></span>Home</a>
+        </div>
 
         <div class="sidebar_option"><a href="aboutu.php" class="side-option"><?php
-                echo '<span><img src="'.$dp_row['dp'].'" class="user_dp"></span>';
+                echo '<span><img src="' . $dp_row['dp'] . '" class="user_dp"></span>';
                 echo $user_row['firstname']; ?></a></div>
         <!--    number of friends-->
         <?php
@@ -51,12 +53,12 @@
         $request = 0;
         //friend list
         $query = $conn->query("select * from user_info");
-        while($row = $query->fetch()) {
+        while ($row = $query->fetch()) {
             $get_id = $row['id'];
             if ($get_id != $user_id) {
                 $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
                 $row = $count_query->fetchColumn();
-                if($row == 1){
+                if ($row == 1) {
                     $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
                     $r_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
                     $f_row = $f_query->fetch();
@@ -72,17 +74,18 @@
             }
         }
         ?>
-        <div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/friends-icon.png"></span>Friends<span class="badge"><?php echo $friend; ?></span></a></div>
+        <div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/friends-icon.png"></span>Friends<span
+                    class="badge"><?php echo $friend; ?></span></a></div>
 
         <!--        pending requests count-->
         <?php
         $query = $conn->query("select * from user_info");
-        while($row = $query->fetch()) {
+        while ($row = $query->fetch()) {
             $get_id = $row['id'];
             if ($get_id != $user_id) {
                 $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
                 $row = $count_query->fetchColumn();
-                if($row == 1){
+                if ($row == 1) {
                     $f_query = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
                     $r_query = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
                     $f_row = $f_query->fetch();
@@ -97,15 +100,16 @@
                 }
             }
         }
-        if(!$ad){
+        if (!$ad) {
             echo '<div class="sidebar_option"><a href="friend_list.php" class="side-option"><span><img src="img/received.png"></span>Pending<span class="badge"><?php echo $request; ?></span></a></div>';
         }
         ?>
 
-        <div class="sidebar_option"><a href="settings.php" class="side-option"><span><img src="img/settings.png"></span>Settings</a></div>
+        <div class="sidebar_option"><a href="settings.php" class="side-option"><span><img src="img/settings.png"></span>Settings</a>
+        </div>
         <div class="sidebar_option">
             <?php
-            if(isset($_SESSION['id']) && $_SESSION['start']== true){
+            if (isset($_SESSION['id']) && $_SESSION['start'] == true) {
                 echo '<a href="logout.php" class="side-option"><span><img src="img/logout.png"></span>Logout</a>';
             }
             ?>
@@ -115,49 +119,48 @@
     <div class="main_content">
         <div class="row about_status">
             <div class="col-md-1" style="text-align: center">
-                <a href="#" class="menu_toggle hmbrgr" ></a>
+                <a href="#" class="menu_toggle hmbrgr"></a>
             </div>
             <?php
             $get_id = $_GET['id'];
-            $user_query = $conn ->query("select * from user_info where id = $get_id");
+            $user_query = $conn->query("select * from user_info where id = $get_id");
             $user_row = $user_query->fetch();
             $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
             $dp_row = $dp_query->fetch();
 
             echo '<div class="col-md-2 dp_box">';
-            echo '<a href="dp_change.php?user='.$user_id.'"><img src="'.$dp_row['dp'].'" class="user_dp"></a>';
+            echo '<a href="dp_change.php?user=' . $user_id . '"><img src="' . $dp_row['dp'] . '" class="user_dp"></a>';
             echo '</div>';
             echo '<div class="col-md-6">';
-            echo '<p id="hi">'.$user_row['firstname'].' '.$user_row['lastname'];
-            echo '<p>'.$user_row['birth'].'</p>';
-            echo '<p>'.$user_row['email'].'</p>';
+            echo '<p id="hi">' . $user_row['firstname'] . ' ' . $user_row['lastname'];
+            echo '<p>' . $user_row['birth'] . '</p>';
+            echo '<p>' . $user_row['email'] . '</p>';
             echo '</div>';
             echo '<div class="col-md-2 text-center">';
 
-                $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
-                $row = $count_query->fetchColumn();
-                if ($row == 0) {
-                    echo '<a href="add_friends.php?id=' . $get_id . '"><img src="img/add_friend.png" style="width:50px"></a>'; //if no row exists
-                }
+            $count_query = $conn->query("select count(*) from friends where user_id = $user_id and friend_id = $get_id");
+            $row = $count_query->fetchColumn();
+            if ($row == 0) {
+                echo '<a href="add_friends.php?id=' . $get_id . '"><img src="img/add_friend.png" style="width:50px"></a>'; //if no row exists
+            }
 
-                $my_count = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
-                $my_row = $my_count->fetch();
-                $frnd_count = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
-                $frnd_row = $frnd_count->fetch();
-                if($frnd_row['accepted'] == 1 && $my_row['accepted'] == 1){
-                    echo '<img src="img/friends-icon.png" style="width: 50px">';
-                }
-                 if($my_row['accepted'] == 1 && $frnd_row['accepted'] == 0){
-                    echo '<img src="img/request.png" style="width: 50px">';
-                }
-                if($my_row['accepted'] == 0 && $frnd_row['accepted'] == 1){
+            $my_count = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
+            $my_row = $my_count->fetch();
+            $frnd_count = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+            $frnd_row = $frnd_count->fetch();
+            if ($frnd_row['accepted'] == 1 && $my_row['accepted'] == 1) {
+                echo '<img src="img/friends-icon.png" style="width: 50px">';
+            }
+            if ($my_row['accepted'] == 1 && $frnd_row['accepted'] == 0) {
                 echo '<img src="img/request.png" style="width: 50px">';
-                    echo '<div>';
-                echo '<a href="accept_req.php?id='.$get_id.'"><img src="img/accept.png" style="width:50px;"></a>';
-                echo '<a href="decline_req.php?id='.$get_id.'"><img src="img/cancel.png"  style="width:50px;"></a>';
-                    echo '</div>';
-                }
-
+            }
+            if ($my_row['accepted'] == 0 && $frnd_row['accepted'] == 1) {
+                echo '<img src="img/request.png" style="width: 50px">';
+                echo '<div>';
+                echo '<a href="accept_req.php?id=' . $get_id . '"><img src="img/accept.png" style="width:50px;"></a>';
+                echo '<a href="decline_req.php?id=' . $get_id . '"><img src="img/cancel.png"  style="width:50px;"></a>';
+                echo '</div>';
+            }
 
 
             echo '</div>'
@@ -170,17 +173,17 @@
         <?php
         //
         $post_query = $conn->query("select * from status_update order by event_time desc");
-        while($post_row = $post_query->fetch()) {
+        while ($post_row = $post_query->fetch()) {
             $get_id = $post_row['user_id'];
-        $my_count = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
-        $my_row = $my_count->fetch();
-        $frnd_count = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
-        $frnd_row = $frnd_count->fetch();
-        if($frnd_row['accepted'] == 1 && $my_row['accepted'] == 1){
-            $id = $post_row['id'];
-            $post_id = 0;
+            $my_count = $conn->query("select * from friends where user_id = $user_id and friend_id = $get_id");
+            $my_row = $my_count->fetch();
+            $frnd_count = $conn->query("select * from friends where user_id = $get_id and friend_id = $user_id");
+            $frnd_row = $frnd_count->fetch();
+            if ($frnd_row['accepted'] == 1 && $my_row['accepted'] == 1) {
+                $id = $post_row['id'];
+                $post_id = 0;
 
-                if($get_id == $_GET['id']) {
+                if ($get_id == $_GET['id']) {
                     $dp_query = $conn->query("select * from display_pic where user_id = $get_id");
                     $dp_row = $dp_query->fetch();
 //                    $ind_query = $conn->query("select * from status_update where user_id = $get_id");
@@ -207,71 +210,71 @@
     <a href="#" class="scrollToTop"><img src="" </a>
 </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="menu-trans/assets/js/jquery.hmbrgr.min.js"></script>
-    <script src="../includes/js/bootstrap.min.js"></script>
-    <!--off canvas menu-->
-    <script type="text/javascript">
-        function readURL(input) {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="menu-trans/assets/js/jquery.hmbrgr.min.js"></script>
+<script src="includes/js/bootstrap.min.js"></script>
+<!--off canvas menu-->
+<script type="text/javascript">
+    function readURL(input) {
 
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#pre').attr('src', e.target.result);
-                };
+            reader.onload = function (e) {
+                $('#pre').attr('src', e.target.result);
+            };
 
-                reader.readAsDataURL(input.files[0]);
-            }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 
-        $("#file1").change(function(){
-            readURL(this);
+    $("#file1").change(function () {
+        readURL(this);
+    });
+</script>
+
+<script type="text/javascript">
+    $('.hmbrgr').hmbrgr({
+        width: 50, 		// optional - set hamburger width
+        height: 30, 		// optional - set hamburger height
+        speed: 200,		// optional - set animation speed
+        barHeight: 4,			// optional - set bars height
+        barRadius: 0,			// optional - set bars border radius
+        barColor: '#000000'	// optional - set bars color
+    });
+    $(document).ready(function () {
+        var menu = "close";
+        $('.menu_toggle').click(function () {
+            if (menu == "close") {
+                var pos = window.pageYOffset;
+                $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
+                $('.main_content').css('-webkit-transform', 'translate(15%,0)');
+                $('.menu-img').attr('src', 'img/back.png');
+                menu = "open";
+            }
+            else {
+                $('.sidebar').css('-webkit-transform', 'translate(-100%,0)');
+                $('.main_content').css('-webkit-transform', 'translate(0,0)');
+                $('.menu-img').attr('src', 'img/menu-icon.png');
+                menu = "close";
+            }
         });
-    </script>
-
-    <script type="text/javascript">
-        $('.hmbrgr').hmbrgr({
-            width     : 50, 		// optional - set hamburger width
-            height    : 30, 		// optional - set hamburger height
-            speed     : 200,		// optional - set animation speed
-            barHeight : 4,			// optional - set bars height
-            barRadius : 0,			// optional - set bars border radius
-            barColor  : '#000000'	// optional - set bars color
+        //Check to see if the window is top if not then display button
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.scrollToTop').fadeIn();
+            } else {
+                $('.scrollToTop').fadeOut();
+            }
         });
-        $(document).ready(function(){
-            var menu = "close";
-            $('.menu_toggle').click(function () {
-                if(menu == "close"){
-                    var pos = window.pageYOffset;
-                    $('.sidebar').css('-webkit-transform', 'translate(0, 0)');
-                    $('.main_content').css('-webkit-transform', 'translate(15%,0)');
-                    $('.menu-img').attr('src','img/back.png');
-                    menu = "open";
-                }
-                else{
-                    $('.sidebar').css('-webkit-transform', 'translate(-100%,0)');
-                    $('.main_content').css('-webkit-transform', 'translate(0,0)');
-                    $('.menu-img').attr('src','img/menu-icon.png');
-                    menu = "close";
-                }
-            });
-            //Check to see if the window is top if not then display button
-            $(window).scroll(function(){
-                if ($(this).scrollTop() > 100) {
-                    $('.scrollToTop').fadeIn();
-                } else {
-                    $('.scrollToTop').fadeOut();
-                }
-            });
 
-            //Click event to scroll to top
-            $('.scrollToTop').click(function(){
-                $('html, body').animate({scrollTop : 0},800);
-                return false;
-            });
-
+        //Click event to scroll to top
+        $('.scrollToTop').click(function () {
+            $('html, body').animate({scrollTop: 0}, 800);
+            return false;
         });
-    </script>
+
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+This was my first PHP project..So a lot of poor code..any correction or modification would be gladly accepted...
+ROCK ON!! KEEP CODING...!!
+
+Below is the database info..Edit, Run according to your needs..
+
+database: 
+create database Social
+
+user_info:
+create table user_info(
+id int(10) not null primary key auto_increment,
+firstname varchar(50) not null,
+lastname varchar(50) not null,
+email varchar(50) not null,
+password varchar(50) not null,
+birth varchar(50) not null,
+gender varchar(10) not null
+); 
+
+social_update:
+create table status_update(
+id int(10) not null primary key auto_increment,
+user_id int(10),
+status_post varchar(500),
+image varchar(200),
+video_link varchar(500),
+title varchar(100),
+event_time varchar(50),
+foreign key (user_id) references user_info(id) on delete cascade
+);
+
+
+friends:
+create table friends(
+user_id int(10) null,
+friend_id int(10) null,
+accepted boolean,
+foreign key (user_id) references user_info(id) on delete cascade
+);
+
+comments:
+create table comments(
+id int(10) not null primary key auto_increment,
+user_id int(10),
+post_id int(10),
+post_comment varchar(200),
+image varchar(100),
+foreign key (user_id) references user_info(id) on delete cascade,
+foreign key (post_id) references status_update(id) on delete cascade
+);
+
+
+display_pic:
+create table display_pic(
+user_id int(10),
+dp varchar(100),
+if_default boolean,
+foreign key (user_id) references user_info(id) on delete cascade
+);
+
+-----!!-----<<------>>-------!!-------
+
+For any query contact me on www.github.com/moidmw
+or mail me at moid.mw@gmail.com

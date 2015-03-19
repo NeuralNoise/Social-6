@@ -1,4 +1,4 @@
-<?php
+or<?php
 include "connect.php";
 session_start();
 $comment = $_POST['comment'];
