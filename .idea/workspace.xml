@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5efc0738-6e88-4e6e-af5d-346f1e288bb0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/connect.php" afterPath="$PROJECT_DIR$/connect.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.php" afterPath="$PROJECT_DIR$/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Social.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +23,43 @@
     <favorites_list name="Social" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="connect.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/connect.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.1111112">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/home.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3779385">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+              <folding>
+                <marker date="1436946871822" expanded="true" signature="802:837" placeholder="select * fro..user_info..." />
+                <marker date="1436946871822" expanded="true" signature="917:959" placeholder="select * fro..display_pic..." />
+                <marker date="1436946871822" expanded="true" signature="2036:2059" placeholder="select * fro..user_info..." />
+                <marker date="1436946871822" expanded="true" signature="2222:2292" placeholder="select count..friends..." />
+                <marker date="1436946871822" expanded="true" signature="2433:2495" placeholder="select * fro..friends..." />
+                <marker date="1436946871822" expanded="true" signature="2552:2615" placeholder="select * fro..friends..." />
+                <marker date="1436946871822" expanded="true" signature="3319:3342" placeholder="select * fro..user_info..." />
+                <marker date="1436946871822" expanded="true" signature="3505:3575" placeholder="select count..friends..." />
+                <marker date="1436946871822" expanded="true" signature="3716:3778" placeholder="select * fro..friends..." />
+                <marker date="1436946871822" expanded="true" signature="3835:3898" placeholder="select * fro..friends..." />
+                <marker date="1436946871822" expanded="true" signature="7108:7160" placeholder="select * fro..status_update..." />
+                <marker date="1436946871822" expanded="true" signature="7530:7593" placeholder="select * fro..friends..." />
+                <marker date="1436946871822" expanded="true" signature="7652:7714" placeholder="select * fro..friends..." />
+                <marker date="1436946871822" expanded="true" signature="8130:8172" placeholder="select * fro..display_pic..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,8 +77,8 @@
         <option value="$PROJECT_DIR$/register.php" />
         <option value="$PROJECT_DIR$/settings.php" />
         <option value="$PROJECT_DIR$/user.php" />
-        <option value="$PROJECT_DIR$/home.php" />
         <option value="$PROJECT_DIR$/connect.php" />
+        <option value="$PROJECT_DIR$/home.php" />
       </list>
     </option>
   </component>
@@ -160,16 +192,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1368" height="742" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25227273" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25227273" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -275,20 +307,20 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..user_info..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..display_pic..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..user_info..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select count..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..user_info..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select count..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..status_update..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..display_pic..." />
+            <marker date="1436946871822" expanded="true" signature="802:837" placeholder="select * fro..user_info..." />
+            <marker date="1436946871822" expanded="true" signature="917:959" placeholder="select * fro..display_pic..." />
+            <marker date="1436946871822" expanded="true" signature="2036:2059" placeholder="select * fro..user_info..." />
+            <marker date="1436946871822" expanded="true" signature="2222:2292" placeholder="select count..friends..." />
+            <marker date="1436946871822" expanded="true" signature="2433:2495" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="2552:2615" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="3319:3342" placeholder="select * fro..user_info..." />
+            <marker date="1436946871822" expanded="true" signature="3505:3575" placeholder="select count..friends..." />
+            <marker date="1436946871822" expanded="true" signature="3716:3778" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="3835:3898" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="7108:7160" placeholder="select * fro..status_update..." />
+            <marker date="1436946871822" expanded="true" signature="7530:7593" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="7652:7714" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="8130:8172" placeholder="select * fro..display_pic..." />
           </folding>
         </state>
       </provider>
@@ -528,7 +560,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/connect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10307414">
+        <state vertical-scroll-proportion="-2.1111112">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
           <folding />
         </state>
@@ -536,23 +568,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6528029">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.3779385">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
           <folding>
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..user_info..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..display_pic..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..user_info..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select count..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..user_info..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select count..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..status_update..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..friends..." />
-            <marker date="1436946556442" expanded="true" signature="-1:-1" placeholder="select * fro..display_pic..." />
+            <marker date="1436946871822" expanded="true" signature="802:837" placeholder="select * fro..user_info..." />
+            <marker date="1436946871822" expanded="true" signature="917:959" placeholder="select * fro..display_pic..." />
+            <marker date="1436946871822" expanded="true" signature="2036:2059" placeholder="select * fro..user_info..." />
+            <marker date="1436946871822" expanded="true" signature="2222:2292" placeholder="select count..friends..." />
+            <marker date="1436946871822" expanded="true" signature="2433:2495" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="2552:2615" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="3319:3342" placeholder="select * fro..user_info..." />
+            <marker date="1436946871822" expanded="true" signature="3505:3575" placeholder="select count..friends..." />
+            <marker date="1436946871822" expanded="true" signature="3716:3778" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="3835:3898" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="7108:7160" placeholder="select * fro..status_update..." />
+            <marker date="1436946871822" expanded="true" signature="7530:7593" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="7652:7714" placeholder="select * fro..friends..." />
+            <marker date="1436946871822" expanded="true" signature="8130:8172" placeholder="select * fro..display_pic..." />
           </folding>
         </state>
       </provider>

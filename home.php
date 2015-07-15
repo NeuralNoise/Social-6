@@ -9,6 +9,7 @@
     <?php
     include "connect.php";
     session_start();
+    error_reporting(E_ALL & ~E_NOTICE);
     if (!$_COOKIE['userid'] && !$_SESSION['id']) {
         header('Location:index.php?login=0');
     }
