@@ -18,7 +18,6 @@
     if (!$_SESSION['id']) {
         $user_id = $_COOKIE['userid'];
     }
-    echo $_COOKIE['userid'];
     $user_query = $conn->query("select * from user_info where id = $user_id");
     $user_row = $user_query->fetch();
     $dp_query = $conn->query("select * from display_pic where user_id = $user_id");
@@ -216,7 +215,6 @@
     <script src="menu-trans/assets/js/jquery.hmbrgr.min.js"></script>
     <script src="includes/js/bootstrap.min.js"></script>
     <script src="ajax.js" type="application/javascript"></script>
-    Image Preview
     <script type="text/javascript">
         function readURL(input) {
 
